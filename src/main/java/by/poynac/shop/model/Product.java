@@ -1,9 +1,6 @@
 package by.poynac.shop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -17,6 +14,13 @@ public class Product {
     private String description;
 
     public Product() {
+    }
+
+    public Product(Long id, String name, Double price, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
     }
 
     public Long getId() {
