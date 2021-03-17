@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="big_full (text, size)" class="container-fluid text-center py-3 w-100 bg-black">
+    <div class="row py-5 font-raleway text-white fs-40 text-center">
+        <p class="text-uppercase" th:text="${text}"></p>
+    </div>
+    <div class="row mx-auto my-auto">
+        <div id="bigCarousel" class="carousel carousel__big w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox">
+
+                <div class="carousel-item active">
+                    <div class="col-lg-4 text-white">
+                        <img class="img-fluid" th:src="@{${'http://placehold.it/300x300?text=00'}}" alt="carousel item 1">
+                        <p class="font-raleway fs-30 font-up pt-3">name</p>
+                        <p class="font-montserrat font-up fs-25">0 BYN</p>
+                    </div>
+                </div>
+
+                <th:block th:each="i: ${#numbers.sequence(1, size)}">
+
+                    <div class="carousel-item">
+                        <div class="col-lg-4 text-white">
+                            <img class="img-fluid" th:src="@{${'http://placehold.it/300x300?text='+i}}"
+                                 alt="carousel item 3">
+                            <p class="font-raleway fs-30 font-up pt-3" th:text="'name'+${i}"></p>
+                            <p class="font-montserrat font-up fs-25" th:text="${i}+' BYN'"></p>
+                        </div>
+                    </div>
+
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="small_full (text, size)" class="container-fluid text-center py-3 w-100 bg-black">
+    <div class="row py-5 font-raleway text-white fs-40 text-center">
+        <p class="text-uppercase" th:text="${text}"></p>
+    </div>
+    <div class="row mx-auto my-auto">
+        <div id="smallCarousel" class="carousel carousel__small w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox">
+
+                <div class="carousel-item active">
+                    <div class="col-lg-3 text-white">
+                        <img class="img-fluid" th:src="@{${'http://placehold.it/200x200?text=0'}}"
+                             alt="carousel item 5">
+                        <p class="font-raleway fs-25 pt-3" th:text="'name'"></p>
+                        <p class="font-montserrat fs-20" th:text="'0 BYN'"></p>
+                    </div>
+                </div>
+
+                <th:block th:each="i: ${#numbers.sequence(1, size)}">
+
+                    <div class="carousel-item">
+                        <div class="col-lg-3 text-white">
+                            <img class="img-fluid" th:src="@{${'http://placehold.it/200x200?text='+i}}"
+                                 alt="carousel item 5">
+                            <p class="font-raleway fs-25 pt-3" th:text="'name'+${i}"></p>
+                            <p class="font-montserrat fs-20" th:text="${i}+' BYN'"></p>
+                        </div>
+                    </div>
+
+                </th:block>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

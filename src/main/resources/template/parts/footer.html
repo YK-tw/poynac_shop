@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="full" class="container-fluid pt-70 bg-darkgreen">
+    <div class="row">
+        <div class="col-lg-4 text-white font-raleway fs-25">
+            <p class="text-center text-uppercase letter-spacing-005" th:text="#{footer.information}"></p>
+            <p class="pl-100" th:text="#{footer.about}"></p>
+            <p class="pl-100" th:text="#{footer.blog}"></p>
+            <p class="pl-100" th:text="#{footer.reviews}"></p>
+            <p class="pl-100" th:text="#{footer.care}"></p>
+        </div>
+        <div class="col-lg-4 text-white font-raleway fs-25">
+            <p class="text-center text-uppercase letter-spacing-005" th:text="#{footer.customers}"></p>
+            <p class="pl-100" th:text="#{footer.payment}"></p>
+            <p class="pl-100" th:text="#{footer.promotion}"></p>
+            <p class="pl-100" th:text="#{footer.replacement}"></p>
+        </div>
+        <div class="col-lg-4 text-white font-raleway fs-25">
+            <p class="pl-50 text-uppercase letter-spacing-005" th:text="#{footer.contacts}"></p>
+            <p id="address" class="pl-50" th:text="#{footer.address}"></p>
+            <p id="phone" class="pl-50 font-montserrat">375 (29) 457-09-37</p>
+            <img class="pl-50" th:src="@{/ref/svg/inst_icon.svg}">
+            <img class="pl-10" th:src="@{/ref/svg/vk_icon.svg}">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+button > div {
+    position: relative;
+    height: 20px;
+    top: -3.5px;
+}
+
+.col-lg-4 {
+    padding: 0 !important;
+}
+
+.product__holder {
+    padding-bottom: 70px;
+}
+
+.product__holder .product__card {
+    padding-left: 100px;
+    padding-top: 30px;
+}
+
+.product__holder .product__card:first-child {
+    padding-top: 70px;
+}
+
+.card__text + .card__text {
+    padding-top: 30px;
+}
+
+.card__text {
+    padding-top: 10px;
+    width: 250px;
+}
+
+.product_card_img {
+    width: 150px;
+    height: 150px;
+}
+
+
+/*AMOUNT INPUT*/
+
+.amount__input {
+    width: 40px;
+    height: 40px;
+    background: black;
+    border: 2px solid #646E44;
+    text-align: center;
+}
+
+.amount_button_container {
+    width: 27px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.amount__button {
+    width: 27px;
+    height: 20px;
+    background: black;
+    text-align: center;
+    border: 2px solid #646E44;
+    border-left: 0;
+}
+
+.amount__button + .amount__button {
+    border-top: 0;
+}
+
+/*!!AMOUNT INPUT!!*/
+
+.delete__link {
+    margin: auto 0;
+    background-image: url("../ref/svg/cross.svg");
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 16px;
+    text-decoration: none!important;
+}

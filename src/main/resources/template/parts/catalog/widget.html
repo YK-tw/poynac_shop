@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="widget" th:fragment="widget (title, items)">
+    <div class="widget__title widget_title_active text-white font-raleway fs-30 letter-spacing-005 mb-20"
+         th:text="${title}">
+    </div>
+    <div class="widget__body widget_body_hidden">
+        <label class="checkbox" th:each="item : ${#strings.arraySplit(items, ',')}">
+            <input type="checkbox" class="checkbox__real" name="term">
+            <span class="checkbox__fake"></span>
+            <span class="checkbox__title text-white font-raleway fs-25" th:text="${item}"></span>
+        </label>
+    </div>
+</div>
+
+
+<div class="row" th:fragment="filter_resize">
+    <form class="col-lg-8" th:fragment="filter">
+        <label class="text-white font-raleway fs-25">
+            <th:block th:text="#{widget.sort}"></th:block>
+            <select onchange="this.form.submit()"
+                    class="w-200 bg-black text-center text-white font-raleway fs-25">
+                <option>по умолчанию</option>
+                <option>по алфавиту</option>
+                <option>по id</option>
+                <option>по цене</option>
+            </select>
+            <button type="submit" class="bg-black p-0 b-0 filter__toggle"></button>
+        </label>
+    </form>
+    <form class="col-lg-4" th:fragment="resize">
+        <label class="text-white font-raleway fs-25">
+            <th:block th:text="#{widget.show}"></th:block>
+            <input type="number" class="ml-1 bg-black p-0 w-30 text-white font-montserrat text-center"
+                   min="1"
+                   max="24" value="6">
+        </label>
+    </form>
+</div>
+
+<div th:fragment="img_gallery">
+    <div th:fragment="gallery_big_img" class="img__container pb-3">
+        <img id="expandedImg" th:src="@{/ref/earrings.png}">
+    </div>
+    <div th:fragment="gallery_choose" class="img__row">
+        <div class="img__column">
+            <img th:src="@{/ref/bracelets.png}" alt="Bracelets" onclick="imageExpand(this);">
+        </div>
+        <div class="img__column">
+            <img th:src="@{/ref/cuffs.png}" alt="Cuffs" onclick="imageExpand(this);">
+        </div>
+        <div class="img__column">
+            <img th:src="@{/ref/chains.png}" alt="Chains" onclick="imageExpand(this);">
+        </div>
+        <div class="img__column">
+            <img th:src="@{/ref/earrings.png}" alt="Earrings" onclick="imageExpand(this);">
+        </div>
+    </div>
+</div>
+
+<div th:fragment="size_card_holder (amount)" class="size-card-holder d-flex mt-20">
+    <th:block th:each="i: ${#numbers.sequence(0, amount)}">
+        <a th:fragment="size_card" class="size__card text-white font-montserrat fs-25" th:text="${i}"></a>
+    </th:block>
+</div>
+
+<div th:fragment="charact" class="charact text-white font-raleway fs-20 d-flex">
+    <span>Material:</span>
+    <span>material</span>
+</div>
+
+<div th:fragment="looked" class="mb-70">
+    <div class="mt-70 mb-70 text-uppercase font-raleway fs-35 text-white text-center" th:text="#{widget.looked}"></div>
+    <div class="row">
+        <th:block th:each="i: ${#numbers.sequence(0, 3)}">
+
+            <div class="looked__card mb-20 col-lg-3 col-sm-6 d-flex justify-content-center">
+                <div class="looked_card_img">
+                    <img src="http://placehold.it/130x130?text=1" alt="product img">
+                </div>
+                <div class="looked_card_content text-center">
+                    <div class="looked_card_title font-raleway text-white fs-25" th:text="'name'">text</div>
+                    <div class="looked_card_price font-montserrat text-white fs-20 text-uppercase" th:text="'97 byn'">
+                        price
+                    </div>
+                </div>
+            </div>
+
+        </th:block>
+    </div>
+</div>
+
+</body>
+</html>

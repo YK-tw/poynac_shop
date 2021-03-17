@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="full" class="container-fluid bg-darkgreen">
+    <div th:fragment="promo-text" class="row bg-black">
+        <div class="col-12 text-center text-white py-3 font-raleway fs-25" th:text="#{main.header}">
+        </div>
+    </div>
+    <div th:fragment="logo-part" class="row bg-green">
+        <div class="col-lg-3 d-flex justify-content-evenly align-items-center pt-3 text-white font-raleway fs-25">
+            <div>
+                <button onclick="dropdownFunction('dropdownLang')"
+                        class="dropbtn bg-green text-white font-raleway fs-25 text-uppercase"
+                        th:text="${#locale}"></button>
+                <div id="dropdownLang" class="dropdown-content lang-dropdown">
+                    <a class="font-raleway text-white" href="?lang=ru">RU</a>
+                    <a class="font-raleway text-white" href="?lang=en">EN</a>
+                </div>
+            </div>
+            <p>BYN</p>
+        </div>
+        <div class="col-lg-6 text-center pt-3 pb-4">
+            <img th:src="@{/ref/svg/logo.svg}" alt="logo">
+        </div>
+        <div class="col-lg-3 d-flex justify-content-evenly align-items-center py-3 text-white">
+            <a>
+                <img th:src="@{/ref/svg/search.svg}" alt="search">
+            </a>
+            <a>
+                <img th:src="@{/ref/svg/profile.svg}" alt="profile">
+            </a>
+            <a>
+                <img th:src="@{/ref/svg/basket.svg}" alt="basket">
+            </a>
+        </div>
+    </div>
+
+
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-darkgreen">
+        <button class="navbar-toggler" style="background-color: #646E44;" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav w-100 justify-content-between">
+                <a class="nav-item nav-link text-center text-white font-raleway fs-25 letter-spacing-005 text-uppercase col-3"
+                   href="/catalog/"
+                   th:text="#{main.catalog}"></a>
+                <a class="nav-item nav-link text-center text-white font-raleway fs-25 letter-spacing-005 text-uppercase col-3"
+                   href="#"
+                   th:text="#{main.production}"></a>
+                <a class="nav-item nav-link text-center text-white font-raleway fs-25 letter-spacing-005 text-uppercase col-3"
+                   href="#"
+                   th:text="#{main.certificates}"></a>
+                <a class="nav-item nav-link text-center text-white font-raleway fs-25 letter-spacing-005 text-uppercase col-3"
+                   href="#">SALE</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+
+</body>
+</html>

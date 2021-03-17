@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<a th:fragment="card (name, price)" class="card__link" href="#">
+    <div class="item__card">
+        <div class="card__img">
+            <img src="http://placehold.it/270x270?text=1" alt="product img">
+            <img class="card_img_hidden" src="http://placehold.it/270x270?text=2" alt="product img">
+        </div>
+        <div class="card__content text-center">
+            <div class="card__title font-raleway text-white fs-25" th:text="${name}"></div>
+            <div class="card__price font-montserrat text-white fs-20 text-uppercase" th:text="${price}"></div>
+        </div>
+    </div>
+</a>
+
+
+<div th:fragment="basket_card (i)" class="product__card d-flex">
+    <img class="product_card_img" src="http://placehold.it/300x300?text=1">
+    <div class="text-white font-raleway pl-10">
+        <div class="card__text fs-25">Text text</div>
+        <div class="card__text fs-20">Text2 text</div>
+    </div>
+    <div class="d-flex align-items-center pl-20">
+        <input class="amount__input font-montserrat fs-20 text-white" type="number" min="1" max="100"
+               value="1">
+        <div class="amount_button_container">
+            <button class="amount__button text-white font-montserrat" th:onclick="|addProduct('${i}');|">
+                <div>+</div>
+            </button>
+            <button class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${i}');|">
+                <div>&#8722;</div>
+            </button>
+        </div>
+    </div>
+    <div class="font-montserrat text-white fs-20 text-uppercase"
+         style="white-space: nowrap; margin: auto 20px;">85 byn
+    </div>
+    <a class="text-white delete__link" href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+</div>
+
+
+</body>
+</html>

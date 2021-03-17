@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>POYNAC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--//Fonts-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../static/css/main.css">
+    <link rel="stylesheet" th:href="@{/css/catalog.css}" href="../../static/css/catalog.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-black">
+
+<div class="container-fluid" th:insert="~{parts/header::logo-part}"></div>
+
+<div class="toggle__sidebar">
+    <button class="menu_icon_wrapper">
+        <div class="menu__icon"></div>
+    </button>
+</div>
+
+<div class="container__fixed">
+    <div class="row__fixed">
+        <aside class="sidebar">
+
+            <div class="text-white text-center font-raleway fs-40 text-uppercase pb-3" th:text="#{widget.filter}"></div>
+
+            <form>
+                <div th:replace="parts/catalog/widget::widget (#{widget.material},
+                 #{material.cupronickel}+','+#{material.nickelsilver}+','+#{material.brass})"></div>
+
+                <div th:replace="parts/catalog/widget::widget (#{widget.form},
+                #{form.earrings}+','+#{form.ring}+','+#{form.pendant}+','+#{form.chain}+','+#{form.cuff}+','+#{form.bracelet})"></div>
+
+                <div th:replace="parts/catalog/widget::widget (#{widget.inlay},
+                 #{inlay.stone}+','+#{inlay.pearl}+','+#{inlay.wood})"></div>
+
+                <div class="widget">
+                    <div class="widget__body">
+                        <button type="submit" class="form__btn text-white text-center font-raleway fs-25">Submit
+                        </button>
+                        <button type="reset" class="form__btn text-white text-center font-raleway fs-25">Discard
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </aside>
+
+        <main class="main mt-70">
+
+            <div th:replace="~{parts/catalog/widget::filter_resize}"></div>
+
+            <div class="card__holder">
+
+                <th:block th:each="i: ${#numbers.sequence(0, 17)}">
+                    <div th:replace="~{parts/catalog/item-card::card ('Name', '56 byn')}"></div>
+                </th:block>
+
+            </div>
+
+            <div th:replace="~{parts/catalog/widget::filter_resize}"></div>
+
+
+            <div class="justify-content-center d-flex">
+                <a class="cl-green font-montserrat fs-25">1</a>
+                <a class="ml-4 text-white font-montserrat fs-25">2</a>
+                <a class="ml-4 text-white font-montserrat fs-25">3</a>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<div th:insert="~{parts/footer::full}"></div>
+
+<script th:src="@{/js/visual.js}"></script>
+<script src="../../static/js/visual.js"></script>
+</body>
+</html>

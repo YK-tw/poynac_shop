@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>POYNAC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--//Fonts-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../static/css/main.css">
+    <link rel="stylesheet" th:href="@{/css/product.css}" href="../../static/css/product.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-black">
+
+<div class="container-fluid" th:insert="~{parts/header::logo-part}"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 order-lg-12 p-0">
+
+            <div class="font-raleway fs-40 text-white letter-spacing-0 mt-70" th:text="'Кольцо Древо'"></div>
+            <div class="mt-30 d-flex font-raleway fs-25">
+                <p class="text-white mb-0" th:text="#{product.existence}"></p>
+                <p class="cl-green mb-0" th:text="#{product.existence.value}"></p>
+            </div>
+            <div class="font-raleway fs-25 text-white mt-30" th:text="#{product.size}"></div>
+
+            <div th:replace="~{parts/catalog/widget::size_card_holder (10)}"></div>
+
+            <div class="text-white font-montserrat fs-30 text-uppercase mt-20">85 BYN</div>
+
+            <div class="d-flex mt-33">
+                <input class="amount__input font-montserrat fs-30 text-white" type="number" min="1" max="100" value="1">
+                <div class="amount_button_container">
+                    <button class="amount__button text-white font-montserrat" onclick="addProduct()">+</button>
+                    <button class="amount__button text-white font-montserrat" onclick="divideProduct()">&#8722;</button>
+                </div>
+                <button type="submit" class="amount__submit font-raleway fs-25 text-white bg-lightgreen b-0"
+                        th:text="#{product.addbutton}">
+                </button>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 order-lg-1 p-0">
+            <div class="pt-70 pl-100" th:insert="parts/catalog/widget::img_gallery"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-6 p-0"></div>
+        <div class="col-lg-6 p-0">
+            <div class="font-raleway fs-30 mt-70 text-white">Описание</div>
+            <div class="w-450 mt-20 font-raleway fs-20 text-white">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do
+                eiusmod tempor incididunt ut labore
+                et dolore magna aliqua.
+            </div>
+            <div class="mt-30 font-raleway fs-30 text-white">Характеристики</div>
+            <div class="mt-20">
+                <th:block th:each="i: ${#numbers.sequence(0, 5)}">
+                    <div th:replace="~{parts/catalog/widget::charact}"></div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="~{parts/home/carousel::small_full (#{widget.variant}, 7)}"></div>
+
+    <div th:replace="~{parts/catalog/widget::looked}"></div>
+
+</div>
+
+<div th:replace="~{parts/footer::full}"></div>
+
+<script th:src="@{/js/visual.js}"></script>
+<script>
+
+    //sidebar toggle on mobile
+
+    const sidebarToggleBtn = document.querySelector('.menu_icon_wrapper');
+    const menuIcon = document.querySelector('.menu__icon');
+    const sidebar = document.querySelector('.sidebar');
+
+    sidebarToggleBtn.onclick = function () {
+        menuIcon.classList.toggle('menu_icon_active');
+        sidebar.classList.toggle("sidebar_mobile_active");
+    }
+
+    //sidebar toggle on mobile
+
+</script>
+</body>
+</html>
