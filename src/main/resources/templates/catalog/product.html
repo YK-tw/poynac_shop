@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-lg-6 order-lg-12 p-0">
 
-            <div class="font-raleway fs-40 text-white letter-spacing-0 mt-70" th:text="'Кольцо Древо'"></div>
+            <div class="font-raleway fs-40 text-white letter-spacing-0 mt-70" th:text="${product.name}"></div>
             <div class="mt-30 d-flex font-raleway fs-25">
                 <p class="text-white mb-0" th:text="#{product.existence}"></p>
                 <p class="cl-green mb-0" th:text="#{product.existence.value}"></p>
@@ -39,13 +39,14 @@
 
             <div th:replace="~{parts/catalog/widget::size_card_holder (10)}"></div>
 
-            <div class="text-white font-montserrat fs-30 text-uppercase mt-20">85 BYN</div>
+            <div class="text-white font-montserrat fs-30 text-uppercase mt-20" th:text="${product.price}+' byn'"></div>
 
             <div class="d-flex mt-33">
                 <input class="amount__input font-montserrat fs-30 text-white" type="number" min="1" max="100" value="1">
                 <div class="amount_button_container">
-                    <button class="amount__button text-white font-montserrat" onclick="addProduct()">+</button>
-                    <button class="amount__button text-white font-montserrat" onclick="divideProduct()">&#8722;</button>
+                    <button class="amount__button text-white font-montserrat" onclick="addProduct(0)">+</button>
+                    <button class="amount__button text-white font-montserrat" onclick="divideProduct(0)">&#8722;
+                    </button>
                 </div>
                 <button type="submit" class="amount__submit font-raleway fs-25 text-white bg-lightgreen b-0"
                         th:text="#{product.addbutton}">
@@ -63,13 +64,13 @@
     <div class="row">
         <div class="col-lg-6 p-0"></div>
         <div class="col-lg-6 p-0">
-            <div class="font-raleway fs-30 mt-70 text-white">Описание</div>
+            <div class="font-raleway fs-30 mt-70 text-white" th:text="#{product.description}"></div>
             <div class="w-450 mt-20 font-raleway fs-20 text-white">Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit, sed do
                 eiusmod tempor incididunt ut labore
                 et dolore magna aliqua.
             </div>
-            <div class="mt-30 font-raleway fs-30 text-white">Характеристики</div>
+            <div class="mt-30 font-raleway fs-30 text-white" th:text="#{product.characteristics}"></div>
             <div class="mt-20">
                 <th:block th:each="i: ${#numbers.sequence(0, 5)}">
                     <div th:replace="~{parts/catalog/widget::charact}"></div>

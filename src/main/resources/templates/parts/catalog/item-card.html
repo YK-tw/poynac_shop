@@ -7,15 +7,16 @@
 <body>
 
 
-<a th:fragment="card (name, price)" class="card__link" href="#">
+<a th:fragment="card (product)" class="card__link" th:href="'/catalog/' + ${product.id}">
     <div class="item__card">
         <div class="card__img">
             <img src="http://placehold.it/270x270?text=1" alt="product img">
             <img class="card_img_hidden" src="http://placehold.it/270x270?text=2" alt="product img">
         </div>
         <div class="card__content text-center">
-            <div class="card__title font-raleway text-white fs-25" th:text="${name}"></div>
-            <div class="card__price font-montserrat text-white fs-20 text-uppercase" th:text="${price}"></div>
+            <div class="card__title font-raleway text-white fs-20 text-uppercase" th:text="${product.name}"></div>
+            <div class="card__price font-montserrat text-white fs-20 text-uppercase"
+                 th:text="${product.price}+' byn'"></div>
         </div>
     </div>
 </a>

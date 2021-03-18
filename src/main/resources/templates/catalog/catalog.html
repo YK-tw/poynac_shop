@@ -64,8 +64,8 @@
 
             <div class="card__holder">
 
-                <th:block th:each="i: ${#numbers.sequence(0, 17)}">
-                    <div th:replace="~{parts/catalog/item-card::card ('Name', '56 byn')}"></div>
+                <th:block th:each="product : ${products}">
+                    <div th:replace="~{parts/catalog/item-card::card (${product})}"></div>
                 </th:block>
 
             </div>

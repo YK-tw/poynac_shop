@@ -27,10 +27,9 @@
             <th:block th:text="#{widget.sort}"></th:block>
             <select onchange="this.form.submit()"
                     class="w-200 bg-black text-center text-white font-raleway fs-25">
-                <option>по умолчанию</option>
-                <option>по алфавиту</option>
-                <option>по id</option>
-                <option>по цене</option>
+                <option th:text="#{filter.default}"></option>
+                <option th:text="#{filter.alphabet}"></option>
+                <option th:text="#{filter.price}"></option>
             </select>
             <button type="submit" class="bg-black p-0 b-0 filter__toggle"></button>
         </label>
