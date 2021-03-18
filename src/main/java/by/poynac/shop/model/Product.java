@@ -3,6 +3,7 @@ package by.poynac.shop.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
