@@ -73,9 +73,40 @@
             <div th:replace="~{parts/catalog/widget::filter_resize}"></div>
 
 
-            <div class="justify-content-center d-flex">
+            <!--            <div class="justify-content-center d-flex">-->
+            <!--                <a class="font-montserrat fs-25"-->
+            <!--                   th:each="i : ${#numbers.sequence(0, products.getTotalPages() - 1)}"-->
+            <!--                   th:href="@{'/catalog'(page=${i})}"-->
+            <!--                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"-->
+            <!--                   th:text="${i} + 1"></a>-->
+            <!--            </div>-->
+
+            <div class="justify-content-center d-flex"
+                 th:if="${products.getTotalPages() > 1 && products.getTotalPages() <= 5}">
                 <a class="font-montserrat fs-25"
                    th:each="i : ${#numbers.sequence(0, products.getTotalPages() - 1)}"
+                   th:href="@{'/catalog'(page=${i})}"
+                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:text="${i} + 1"></a>
+            </div>
+            <div class="justify-content-center d-flex" th:if="${products.getTotalPages() > 5}">
+                <a class="font-montserrat fs-25"
+                   th:if="${curPage == 0}"
+                   th:each="i : ${#numbers.sequence(0, 2)}"
+                   th:href="@{'/catalog'(page=${i})}"
+                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:text="${i} + 1"></a>
+
+                <a class="font-montserrat fs-25"
+                   th:if="${curPage == products.getTotalPages() - 1}"
+                   th:each="i : ${#numbers.sequence(products.getTotalPages() - 3, products.getTotalPages() - 1)}"
+                   th:href="@{'/catalog'(page=${i})}"
+                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:text="${i} + 1"></a>
+
+                <a class="font-montserrat fs-25"
+                   th:if="${curPage > 0 && curPage < products.getTotalPages() - 1}"
+                   th:each="i : ${#numbers.sequence(curPage - 1, curPage + 1)}"
                    th:href="@{'/catalog'(page=${i})}"
                    th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
                    th:text="${i} + 1"></a>
@@ -91,3 +122,6 @@
 <script src="../../static/js/visual.js"></script>
 </body>
 </html>
+
+
+

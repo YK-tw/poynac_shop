@@ -3,7 +3,7 @@ body {
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 * {
@@ -333,4 +333,8 @@ input[type=number] {
     -moz-appearance: textfield;
     outline: 0;
     border: 0;
+}
+
+a .cl-green:hover{
+    color: #203B2F!important;
 }
