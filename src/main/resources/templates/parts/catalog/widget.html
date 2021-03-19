@@ -22,24 +22,27 @@
 
 
 <div class="row" th:fragment="filter_resize">
-    <form class="col-lg-8" th:fragment="filter">
+    <form class="col-lg-8" th:fragment="filter" th:action="@{/catalog}" th:object="${String}" th:method="POST">
         <label class="text-white font-raleway fs-25">
             <th:block th:text="#{widget.sort}"></th:block>
-            <select onchange="this.form.submit()"
-                    class="w-200 bg-black text-center text-white font-raleway fs-25">
-                <option th:text="#{filter.default}"></option>
-                <option th:text="#{filter.alphabet}"></option>
-                <option th:text="#{filter.price}"></option>
+            <select th:name="filter"
+                    onchange="this.form.submit()"
+                    class="w-200 bg-black text-white font-raleway fs-25">
+                <option th:value="def" th:text="#{filter.default}"
+                        th:selected="${filter == 'def'}"></option>
+                <option th:value="alphabet" th:text="#{filter.alphabet}" th:selected="${filter == 'alphabet'}"></option>
+                <option th:value="price" th:text="#{filter.price}" th:selected="${filter == 'price'}"></option>
             </select>
             <button type="submit" class="bg-black p-0 b-0 filter__toggle"></button>
         </label>
     </form>
-    <form class="col-lg-4" th:fragment="resize">
+    <form class="col-lg-4" th:fragment="resize" th:action="@{/catalog}" th:object="${Integer}" th:method="POST">
         <label class="text-white font-raleway fs-25">
             <th:block th:text="#{widget.show}"></th:block>
-            <input type="number" class="ml-1 bg-black p-0 w-30 text-white font-montserrat text-center"
+            <input th:name="size" onsubmit="this.form.submit()" type="number"
+                   class="ml-1 bg-black p-0 w-30 text-white font-montserrat text-center"
                    min="1"
-                   max="24" value="6">
+                   max="24" th:value="(${size} > 0)? ${size} : '6'">
         </label>
     </form>
 </div>

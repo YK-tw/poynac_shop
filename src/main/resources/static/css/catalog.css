@@ -17,10 +17,6 @@ p {
 select {
     border: 1px solid black;
     appearance: none;
-    text-align-last: center;
-    text-align: center;
-    -ms-text-align-last: center;
-    -moz-text-align-last: center;
     font-weight: 300;
 }
 
