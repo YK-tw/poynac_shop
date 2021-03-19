@@ -64,7 +64,7 @@
 
             <div class="card__holder">
 
-                <th:block th:each="product : ${products}">
+                <th:block th:each="product : ${products.content}">
                     <div th:replace="~{parts/catalog/item-card::card (${product})}"></div>
                 </th:block>
 
@@ -74,9 +74,11 @@
 
 
             <div class="justify-content-center d-flex">
-                <a href="/catalog?page=0" class="cl-green font-montserrat fs-25">1</a>
-                <a href="/catalog?page=1" class="ml-4 text-white font-montserrat fs-25">2</a>
-                <a href="/catalog?page=2" class="ml-4 text-white font-montserrat fs-25">3</a>
+                <a class="font-montserrat fs-25"
+                   th:each="i : ${#numbers.sequence(0, products.getTotalPages() - 1)}"
+                   th:href="@{'/catalog'(page=${i})}"
+                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:text="${i} + 1"></a>
             </div>
 
         </main>

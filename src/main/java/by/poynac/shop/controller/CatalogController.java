@@ -3,6 +3,8 @@ package by.poynac.shop.controller;
 import by.poynac.shop.model.Product;
 import by.poynac.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -25,8 +27,9 @@ public class CatalogController {
                           @CookieValue(value = "size", defaultValue = "6") String pageSize,
                           @CookieValue(value = "filter", defaultValue = "def") String filter,
                           Model model) {
-        Iterable<Product> products = productRepository.findAll(PageRequest.of(Integer.parseInt(page),
+        Page<Product> products = productRepository.findAll(PageRequest.of(Integer.parseInt(page),
                 Integer.parseInt(pageSize), filterSort(filter)));
+        model.addAttribute("curPage", Integer.parseInt(page));
         model.addAttribute("products", products);
         model.addAttribute("size", Integer.parseInt(pageSize));
         model.addAttribute("filter", filter);
