@@ -12,7 +12,7 @@
             <div>
                 <button onclick="dropdownFunction('dropdownLang')"
                         class="dropbtn bg-green text-white font-raleway fs-25 text-uppercase"
-                        th:text="${#locale}"></button>
+                        th:text="__${#locale}__ == 'en' ? 'en' : 'ru'"></button>
                 <div id="dropdownLang" class="dropdown-content lang-dropdown">
                     <a class="font-raleway text-white" href="?lang=ru">RU</a>
                     <a class="font-raleway text-white" href="?lang=en">EN</a>
