@@ -225,10 +225,14 @@ a.card__link:hover {
 .filter__toggle {
     width: 20px;
     height: 10px;
-    background-image: url('../../static/ref/svg/arrow_down.svg');
+    background-image: url('../ref/svg/arrow_down.svg');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
+}
+
+.toggled {
+    transform: rotate(180deg);
 }
 
 .form__btn {
@@ -335,6 +339,6 @@ input[type=number] {
     border: 0;
 }
 
-a .cl-green:hover{
-    color: #203B2F!important;
+a .cl-green:hover {
+    color: #203B2F !important;
 }

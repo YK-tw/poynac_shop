@@ -49,10 +49,11 @@
 
                 <div class="widget">
                     <div class="widget__body">
-                        <button type="submit" class="form__btn text-white text-center font-raleway fs-25">Submit
+                        <button type="submit" class="form__btn text-white text-center font-raleway fs-25"
+                                th:text="#{submit}">
                         </button>
-                        <button type="reset" class="form__btn text-white text-center font-raleway fs-25">Discard
-                        </button>
+                        <button type="reset" class="form__btn text-white text-center font-raleway fs-25"
+                                th:text="#{reset}"></button>
                     </div>
                 </div>
             </form>
@@ -72,21 +73,12 @@
 
             <div th:replace="~{parts/catalog/widget::filter_resize}"></div>
 
-
-            <!--            <div class="justify-content-center d-flex">-->
-            <!--                <a class="font-montserrat fs-25"-->
-            <!--                   th:each="i : ${#numbers.sequence(0, products.getTotalPages() - 1)}"-->
-            <!--                   th:href="@{'/catalog'(page=${i})}"-->
-            <!--                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"-->
-            <!--                   th:text="${i} + 1"></a>-->
-            <!--            </div>-->
-
             <div class="justify-content-center d-flex"
                  th:if="${products.getTotalPages() > 1 && products.getTotalPages() <= 5}">
                 <a class="font-montserrat fs-25"
                    th:each="i : ${#numbers.sequence(0, products.getTotalPages() - 1)}"
                    th:href="@{'/catalog'(page=${i})}"
-                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:classappend="|${(curPage == i) ? 'cl-green' : 'text-white'} ${(i != 0) ? 'ml-4' : ''}|"
                    th:text="${i} + 1"></a>
             </div>
             <div class="justify-content-center d-flex" th:if="${products.getTotalPages() > 5}">
@@ -94,21 +86,21 @@
                    th:if="${curPage < 2}"
                    th:each="i : ${#numbers.sequence(0, 4)}"
                    th:href="@{'/catalog'(page=${i})}"
-                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:classappend="|${(curPage == i) ? 'cl-green' : 'text-white'} ${(i != 0) ? 'ml-4' : ''}|"
                    th:text="${i} + 1"></a>
 
                 <a class="font-montserrat fs-25"
                    th:if="${curPage > products.getTotalPages() - 3}"
                    th:each="i : ${#numbers.sequence(products.getTotalPages() - 5, products.getTotalPages() - 1)}"
                    th:href="@{'/catalog'(page=${i})}"
-                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:classappend="|${(curPage == i) ? 'cl-green' : 'text-white'} ${(i != 0) ? 'ml-4' : ''}|"
                    th:text="${i} + 1"></a>
 
                 <a class="font-montserrat fs-25"
                    th:if="${curPage > 1 && curPage < products.getTotalPages() - 2}"
                    th:each="i : ${#numbers.sequence(curPage - 2, curPage + 2)}"
                    th:href="@{'/catalog'(page=${i})}"
-                   th:classappend="|${(curPage==i) ? 'cl-green' : 'text-white'} ${(i!=0) ? 'ml-4' : ''}|"
+                   th:classappend="|${(curPage == i) ? 'cl-green' : 'text-white'} ${(i != 0) ? 'ml-4' : ''}|"
                    th:text="${i} + 1"></a>
             </div>
 

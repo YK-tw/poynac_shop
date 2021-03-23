@@ -26,36 +26,51 @@ public class CatalogController {
     public String catalog(@RequestParam(defaultValue = "0") String page,
                           @CookieValue(value = "size", defaultValue = "6") String pageSize,
                           @CookieValue(value = "filter", defaultValue = "def") String filter,
+                          @CookieValue(value = "sortOption", defaultValue = "asc") String sortOption,
                           Model model) {
         Page<Product> products = productRepository.findAll(PageRequest.of(Integer.parseInt(page),
-                Integer.parseInt(pageSize), filterSort(filter)));
+                Integer.parseInt(pageSize), filterSort(filter, sortOption)));
         model.addAttribute("curPage", Integer.parseInt(page));
         model.addAttribute("products", products);
         model.addAttribute("size", Integer.parseInt(pageSize));
         model.addAttribute("filter", filter);
+        model.addAttribute("sort", sortOption);
         return "catalog/catalog";
     }
 
-    public Sort filterSort(String filter) {
+    public Sort filterSort(String filter, String sortOption) {
+        String sortingType;
         switch (filter) {
             case "alphabet":
-                return Sort.by(Sort.Order.asc("name"));
+                sortingType = "name";
+                break;
             case "price":
-                return Sort.by(Sort.Order.asc("price"));
+                sortingType = "price";
+                break;
             default:
-                return Sort.by(Sort.Order.asc("id"));
+                sortingType = "id";
+                break;
+        }
+        if (sortOption.equals("asc")) {
+            return Sort.by(Sort.Order.asc(sortingType));
+        } else {
+            return Sort.by(Sort.Order.desc(sortingType));
         }
     }
 
     @PostMapping
     public String setCatalogSize(HttpServletResponse response,
                                  @RequestParam(required = false) String size,
-                                 @RequestParam(required = false) String filter) {
+                                 @RequestParam(required = false) String filter,
+                                 @RequestParam(required = false) String sortOption) {
         if (size != null) {
             response.addCookie(new Cookie("size", size));
         }
         if (filter != null) {
             response.addCookie(new Cookie("filter", filter));
+        }
+        if (sortOption != null) {
+            response.addCookie(new Cookie("sortOption", sortOption));
         }
         return "redirect:/catalog";
     }
