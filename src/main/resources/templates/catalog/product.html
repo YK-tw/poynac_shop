@@ -65,16 +65,14 @@
         <div class="col-lg-6 p-0"></div>
         <div class="col-lg-6 p-0">
             <div class="font-raleway fs-30 mt-70 text-white" th:text="#{product.description}"></div>
-            <div class="w-450 mt-20 font-raleway fs-20 text-white">Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit, sed do
-                eiusmod tempor incididunt ut labore
-                et dolore magna aliqua.
-            </div>
+            <div class="w-450 mt-20 font-raleway fs-20 text-white" th:text="${product.description}"></div>
             <div class="mt-30 font-raleway fs-30 text-white" th:text="#{product.characteristics}"></div>
             <div class="mt-20">
-                <th:block th:each="i: ${#numbers.sequence(0, 5)}">
-                    <div th:replace="~{parts/catalog/widget::charact}"></div>
+
+                <th:block th:each="attribute : ${product.attributes}">
+                    <div th:replace="~{parts/catalog/widget::charact(${attribute})}"></div>
                 </th:block>
+
             </div>
         </div>
     </div>

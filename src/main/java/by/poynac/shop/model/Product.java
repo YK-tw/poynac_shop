@@ -1,6 +1,8 @@
 package by.poynac.shop.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -12,9 +14,25 @@ public class Product {
 
     private String name;
     private Double price;
+    @Column(columnDefinition = "TEXT")
     private String description;
 
+    @ManyToMany
+    @JoinTable(
+            name = "product_attribute",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "attribute_id"))
+    private List<Attribute> attributes;
+
     public Product() {
+    }
+
+    public Product(Long id, String name, Double price, String description, List<Attribute> attributes) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.attributes = attributes;
     }
 
     public Product(Long id, String name, Double price, String description) {
@@ -55,4 +73,13 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
 }
