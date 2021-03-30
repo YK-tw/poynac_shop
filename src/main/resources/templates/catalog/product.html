@@ -68,11 +68,9 @@
             <div class="w-450 mt-20 font-raleway fs-20 text-white" th:text="${product.description}"></div>
             <div class="mt-30 font-raleway fs-30 text-white" th:text="#{product.characteristics}"></div>
             <div class="mt-20">
-
                 <th:block th:each="attribute : ${product.attributes}">
                     <div th:replace="~{parts/catalog/widget::charact(${attribute})}"></div>
                 </th:block>
-
             </div>
         </div>
     </div>

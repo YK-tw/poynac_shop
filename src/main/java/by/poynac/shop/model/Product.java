@@ -14,6 +14,7 @@ public class Product {
 
     private String name;
     private Double price;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
