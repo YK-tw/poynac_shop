@@ -82,8 +82,8 @@
 
 <div th:fragment="charact (attribute)" class="charact text-white font-raleway fs-20 d-flex">
 <!--    TODO localization-->
-    <span class="text-capitalize" th:text="${attribute.name}+':'"></span>
-    <span class="text-capitalize" th:text="${attribute.value}"></span>
+    <span class="text-capitalize" th:text="#{${attribute.name}}+':'"></span>
+    <span class="text-capitalize" th:text="#{${attribute.value}}"></span>
 </div>
 
 <div th:fragment="looked" class="mb-70">

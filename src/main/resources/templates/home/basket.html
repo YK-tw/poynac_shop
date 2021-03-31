@@ -38,11 +38,11 @@
                     <div class="fs-25 font-raleway mr-10">Итого:</div>
                     <div class="fs-25 font-montserrat text-uppercase">228 byn</div>
                 </div>
-                <div class="text-white font-raleway fs-20 pt-30 px-30 letter-spacing-0">Для оформления заказа необходимо
-                    войти
+                <div class="text-white font-raleway fs-20 pt-30 px-30 letter-spacing-0" th:text="#{basket.unlogin}">
                 </div>
                 <div class="mt-30 pb-40">
-                    <a class="bg-lightgreen text-white font-raleway fs-20 letter-spacing-0 p-2 ml-30">Войти</a>
+                    <a class="bg-lightgreen text-white font-raleway fs-20 letter-spacing-0 p-2 ml-30"
+                       th:text="#{button.login}"></a>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
 
         <div class="col-lg-8 order-lg-1">
 
-            <div class="text-white text-uppercase font-raleway fs-40 pt-70 pl-100">Корзина</div>
+            <div class="text-white text-uppercase font-raleway fs-40 pt-70 pl-100" th:text="#{basket}"></div>
             <div class="product__holder">
 
                 <th:block th:each="i : ${#numbers.sequence(0,3)}">

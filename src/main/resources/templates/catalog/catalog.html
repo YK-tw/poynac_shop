@@ -38,14 +38,14 @@
             <div class="text-white text-center font-raleway fs-40 text-uppercase pb-3" th:text="#{widget.filter}"></div>
 
             <form>
-                <div th:replace="parts/catalog/widget::widget (#{widget.material},
-                 #{material.cupronickel}+','+#{material.nickelsilver}+','+#{material.brass})"></div>
+                <div th:replace="parts/catalog/widget::widget (#{material},
+                 #{cupronickel}+','+#{nickelsilver}+','+#{brass})"></div>
 
-                <div th:replace="parts/catalog/widget::widget (#{widget.form},
-                #{form.earrings}+','+#{form.ring}+','+#{form.pendant}+','+#{form.chain}+','+#{form.cuff}+','+#{form.bracelet})"></div>
+                <div th:replace="parts/catalog/widget::widget (#{form},
+                #{earrings}+','+#{ring}+','+#{pendant}+','+#{chain}+','+#{cuff}+','+#{bracelet})"></div>
 
-                <div th:replace="parts/catalog/widget::widget (#{widget.inlay},
-                 #{inlay.stone}+','+#{inlay.pearl}+','+#{inlay.wood})"></div>
+                <div th:replace="parts/catalog/widget::widget (#{inlay},
+                 #{stone}+','+#{pearl}+','+#{wood})"></div>
 
                 <div class="widget">
                     <div class="widget__body">
