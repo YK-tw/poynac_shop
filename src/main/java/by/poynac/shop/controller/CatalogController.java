@@ -4,6 +4,7 @@ import by.poynac.shop.model.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
 import by.poynac.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,14 +26,23 @@ public class CatalogController {
     private ProductRepository productRepository;
 
     @GetMapping
-    public String catalog(HttpServletRequest request,
-                          @RequestParam(defaultValue = "0") String page,
+    public String catalog(@RequestParam(defaultValue = "0") String page,
                           @CookieValue(value = "size", defaultValue = "6") String pageSize,
                           @CookieValue(value = "sortItem", defaultValue = "def") String sortItem,
                           @CookieValue(value = "sortOption", defaultValue = "asc") String sortOption,
+                          @SessionAttribute(value = "filterAttributes", required = false) List<String> attributes,
                           Model model) {
-        Page<Product> products = productRepository.findAll(PageRequest.of(Integer.parseInt(page),
-                Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
+        //TODO fix filters
+        Page<Product> products;
+        if (attributes != null && !attributes.isEmpty()) {
+            products = productRepository.findProductsByAttributes_Value(attributes.get(0),
+                    PageRequest.of(Integer.parseInt(page),
+                            Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
+        } else {
+            products = productRepository.findAll(PageRequest.of(Integer.parseInt(page),
+                    Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
+        }
+        //TODO fix filters
         model.addAttribute("curPage", Integer.parseInt(page));
         model.addAttribute("products", products);
         model.addAttribute("size", Integer.parseInt(pageSize));
@@ -61,8 +72,8 @@ public class CatalogController {
     }
 
     @PostMapping
-    public String setCatalogSize(HttpServletRequest request,
-                                 HttpServletResponse response,
+    public String setCatalogSize(HttpServletResponse response,
+                                 HttpServletRequest request,
                                  @RequestParam(required = false) String size,
                                  @RequestParam(required = false) String sortItem,
                                  @RequestParam(required = false) String sortOption,
@@ -76,6 +87,14 @@ public class CatalogController {
         if (sortOption != null) {
             response.addCookie(new Cookie("sortOption", sortOption));
         }
+        //TODO fix filters
+        if (wrapper.getAttributes() != null && !wrapper.getAttributes().isEmpty()) {
+            request.getSession().setAttribute("filterAttributes", wrapper.getAttributes());
+        }
+        if(wrapper.getAttributes().isEmpty()){
+            request.getSession().removeAttribute("filterAttributes");
+        }
+        //TODO fix filters
 
         return "redirect:/catalog";
     }
