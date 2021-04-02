@@ -210,7 +210,7 @@ a.card__link:hover {
     top: 1px;
 }
 
-.checkbox__real:checked + .checkbox__fake {
+.checkbox__real:checked + input + .checkbox__fake {
     background-color: #646E44;
 }
 

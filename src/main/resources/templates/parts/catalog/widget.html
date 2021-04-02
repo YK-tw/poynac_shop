@@ -13,9 +13,9 @@
     </div>
     <div class="widget__body widget_body_hidden">
         <label class="checkbox" th:each="item : ${#strings.arraySplit(items, ',')}">
-            <input type="checkbox" class="checkbox__real" name="term">
+            <input type="checkbox" th:field="*{attributes}" th:value="${item}" class="checkbox__real">
             <span class="checkbox__fake"></span>
-            <span class="checkbox__title text-white font-raleway fs-25" th:text="${item}"></span>
+            <span class="checkbox__title text-white font-raleway fs-25 text-capitalize" th:text="#{${item}}"></span>
         </label>
     </div>
 </div>
@@ -26,14 +26,14 @@
         <form th:fragment="filter" th:action="@{/catalog}" th:object="${String}" th:method="POST">
             <label class="text-white font-raleway fs-25">
                 <th:block th:text="#{widget.sort}"></th:block>
-                <select th:name="filter"
+                <select th:name="sortItem"
                         onchange="this.form.submit()"
                         class="w-200 bg-black text-white font-raleway fs-25">
                     <option th:value="def" th:text="#{filter.default}"
-                            th:selected="${filter == 'def'}"></option>
+                            th:selected="${sortItem == 'def'}"></option>
                     <option th:value="alphabet" th:text="#{filter.alphabet}"
-                            th:selected="${filter == 'alphabet'}"></option>
-                    <option th:value="price" th:text="#{filter.price}" th:selected="${filter == 'price'}"></option>
+                            th:selected="${sortItem == 'alphabet'}"></option>
+                    <option th:value="price" th:text="#{filter.price}" th:selected="${sortItem == 'price'}"></option>
                 </select>
             </label>
         </form>
@@ -81,7 +81,7 @@
 </div>
 
 <div th:fragment="charact (attribute)" class="charact text-white font-raleway fs-20 d-flex">
-<!--    TODO localization-->
+    <!--    TODO localization-->
     <span class="text-capitalize" th:text="#{${attribute.name}}+':'"></span>
     <span class="text-capitalize" th:text="#{${attribute.value}}"></span>
 </div>
