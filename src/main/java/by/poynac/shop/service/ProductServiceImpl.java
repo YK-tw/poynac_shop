@@ -16,13 +16,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private AttributeRepository attributeRepository;
-
     @Override
     public Page<Product> findProductsByAttributesValues(List<String> values, Pageable pageable) {
-        return productRepository.findDistinctByAttributesIn(
-                attributeRepository.findAttributesByValueIn(values), pageable);
+        return productRepository.findDistinctByAllAttributes(values, (long) values.size(), pageable);
     }
 
     @Override

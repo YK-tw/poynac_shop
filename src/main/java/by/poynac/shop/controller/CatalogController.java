@@ -1,9 +1,7 @@
 package by.poynac.shop.controller;
 
-import by.poynac.shop.model.Attribute;
 import by.poynac.shop.model.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
-import by.poynac.shop.repository.ProductRepository;
 import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -94,7 +92,7 @@ public class CatalogController {
         if (wrapper.getAttributes() != null && !wrapper.getAttributes().isEmpty()) {
             request.getSession().setAttribute("filterAttributes", wrapper.getAttributes());
         }
-        if (wrapper.getAttributes().isEmpty()) {
+        else {
             request.getSession().removeAttribute("filterAttributes");
         }
         //TODO fix filters
