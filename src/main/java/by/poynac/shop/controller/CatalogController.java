@@ -1,10 +1,11 @@
 package by.poynac.shop.controller;
 
+import by.poynac.shop.model.Attribute;
 import by.poynac.shop.model.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
 import by.poynac.shop.repository.ProductRepository;
+import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -16,14 +17,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/catalog")
 public class CatalogController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @GetMapping
     public String catalog(@RequestParam(defaultValue = "0") String page,
@@ -34,12 +34,14 @@ public class CatalogController {
                           Model model) {
         //TODO fix filters
         Page<Product> products;
+        AttributeFilterWrapper wrapper = new AttributeFilterWrapper();
         if (attributes != null && !attributes.isEmpty()) {
-            products = productRepository.findProductsByAttributes_Value(attributes.get(0),
+            products = productService.findProductsByAttributesValues(attributes,
                     PageRequest.of(Integer.parseInt(page),
                             Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
+            wrapper.setAttributes(attributes);
         } else {
-            products = productRepository.findAll(PageRequest.of(Integer.parseInt(page),
+            products = productService.findAll(PageRequest.of(Integer.parseInt(page),
                     Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
         }
         //TODO fix filters
@@ -48,7 +50,8 @@ public class CatalogController {
         model.addAttribute("size", Integer.parseInt(pageSize));
         model.addAttribute("sortItem", sortItem);
         model.addAttribute("sort", sortOption);
-        model.addAttribute("wrapper", new AttributeFilterWrapper());
+
+        model.addAttribute("wrapper", wrapper);
         return "catalog/catalog";
     }
 
@@ -91,7 +94,7 @@ public class CatalogController {
         if (wrapper.getAttributes() != null && !wrapper.getAttributes().isEmpty()) {
             request.getSession().setAttribute("filterAttributes", wrapper.getAttributes());
         }
-        if(wrapper.getAttributes().isEmpty()){
+        if (wrapper.getAttributes().isEmpty()) {
             request.getSession().removeAttribute("filterAttributes");
         }
         //TODO fix filters
@@ -102,8 +105,8 @@ public class CatalogController {
 
     @GetMapping("/{id:[\\d]+}")
     public String product(Model model, @PathVariable long id) {
-        Optional<Product> product = productRepository.findById(id);
-        model.addAttribute("product", product.get());
+        Product product = productService.findById(id);
+        model.addAttribute("product", product);
         return "catalog/product";
     }
 
