@@ -1,6 +1,5 @@
 package by.poynac.shop.repository;
 
-import by.poynac.shop.model.Attribute;
 import by.poynac.shop.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -145,3 +145,11 @@ function divideProduct(i) {
 }
 
 //amount counter +-
+
+//filter uncheck
+
+function uncheckAll() {
+    $("input[type='checkbox']:checked").prop("checked", false)
+}
+
+//filter uncheck

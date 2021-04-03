@@ -30,7 +30,6 @@ public class CatalogController {
                           @CookieValue(value = "sortOption", defaultValue = "asc") String sortOption,
                           @SessionAttribute(value = "filterAttributes", required = false) List<String> attributes,
                           Model model) {
-        //TODO fix filters
         Page<Product> products;
         AttributeFilterWrapper wrapper = new AttributeFilterWrapper();
         if (attributes != null && !attributes.isEmpty()) {
@@ -42,13 +41,11 @@ public class CatalogController {
             products = productService.findAll(PageRequest.of(Integer.parseInt(page),
                     Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
         }
-        //TODO fix filters
         model.addAttribute("curPage", Integer.parseInt(page));
         model.addAttribute("products", products);
         model.addAttribute("size", Integer.parseInt(pageSize));
         model.addAttribute("sortItem", sortItem);
         model.addAttribute("sort", sortOption);
-
         model.addAttribute("wrapper", wrapper);
         return "catalog/catalog";
     }
@@ -91,8 +88,7 @@ public class CatalogController {
         //TODO fix filters
         if (wrapper.getAttributes() != null && !wrapper.getAttributes().isEmpty()) {
             request.getSession().setAttribute("filterAttributes", wrapper.getAttributes());
-        }
-        else {
+        } else {
             request.getSession().removeAttribute("filterAttributes");
         }
         //TODO fix filters
