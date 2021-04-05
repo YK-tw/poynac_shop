@@ -4,38 +4,56 @@
 
 <div th:fragment="full" class="container-fluid w-100 pt-70 bg-black">
     <div class="row">
-        <div class="col-lg-4 px-0">
-            <img class="w-100" th:src="@{/ref/earrings.png}" alt="earrings">
+        <form th:method="POST" th:object="${wrapper}" th:action="@{/catalog}" class="col-lg-4 px-0">
+            <button class="w-100 b-0 p-0" type="submit">
+                <img class="w-100" th:src="@{/ref/earrings.png}" alt="earrings">
+            </button>
+            <input type="checkbox" th:field="*{attributes}" th:value="'earrings'" style="display: none">
             <span class="overlay-text font-raleway bg-lightgreen font-raleway text-uppercase text-white fs-20"
                   th:text="#{main.earrings}"></span>
-        </div>
-        <div class="col-lg-4 px-0">
-            <img class="w-100" th:src="@{/ref/rings.png}" alt="rings">
+        </form>
+        <form th:method="POST" th:object="${wrapper}" th:action="@{/catalog}" class="col-lg-4 px-0">
+            <button class="w-100 b-0 p-0" type="submit">
+                <img class="w-100" th:src="@{/ref/rings.png}" alt="rings">
+            </button>
+            <input type="checkbox" th:field="*{attributes}" th:value="'ring'" style="display: none">
             <span class="overlay-text font-raleway bg-lightgreen font-raleway text-uppercase text-white fs-20"
                   th:text="#{main.rings}"></span>
-        </div>
-        <div class="col-lg-4 px-0">
-            <img class="w-100" th:src="@{/ref/pendants.png}" alt="pendants">
+        </form>
+        <form th:method="POST" th:object="${wrapper}" th:action="@{/catalog}" class="col-lg-4 px-0">
+            <button class="w-100 b-0 p-0" type="submit">
+                <img class="w-100" th:src="@{/ref/pendants.png}" alt="pendants">
+            </button>
+            <input type="checkbox" th:field="*{attributes}" th:value="'pendant'" style="display: none">
             <span class="overlay-text font-raleway bg-lightgreen font-raleway text-uppercase text-white fs-20"
                   th:text="#{main.pendants}"></span>
-        </div>
+        </form>
     </div>
     <div class="row">
-        <div class="col-lg-4 px-0">
-            <img class="w-100" th:src="@{/ref/chains.png}" alt="chains">
+        <form th:method="POST" th:object="${wrapper}" th:action="@{/catalog}" class="col-lg-4 px-0">
+            <button class="w-100 b-0 p-0" type="submit">
+                <img class="w-100" th:src="@{/ref/chains.png}" alt="chains">
+            </button>
+            <input type="checkbox" th:field="*{attributes}" th:value="'chain'" style="display: none">
             <span class="overlay-text font-raleway bg-lightgreen font-raleway text-uppercase text-white fs-20"
                   th:text="#{main.chains}"></span>
-        </div>
-        <div class="col-lg-4 px-0">
-            <img class="w-100" th:src="@{/ref/cuffs.png}" alt="cuffs">
+        </form>
+        <form th:method="POST" th:object="${wrapper}" th:action="@{/catalog}" class="col-lg-4 px-0">
+            <button class="w-100 b-0 p-0" type="submit">
+                <img class="w-100" th:src="@{/ref/cuffs.png}" alt="cuffs">
+            </button>
+            <input type="checkbox" th:field="*{attributes}" th:value="'cuff'" style="display: none">
             <span class="overlay-text font-raleway bg-lightgreen font-raleway text-uppercase text-white fs-20"
                   th:text="#{main.cuffs}"></span>
-        </div>
-        <div class="col-lg-4 px-0">
-            <img class="w-100" th:src="@{/ref/bracelets.png}" alt="bracelets">
+        </form>
+        <form th:method="POST" th:object="${wrapper}" th:action="@{/catalog}" class="col-lg-4 px-0">
+            <button class="w-100 b-0 p-0" type="submit">
+                <img class="w-100" th:src="@{/ref/bracelets.png}" alt="bracelets">
+            </button>
+            <input type="checkbox" th:field="*{attributes}" th:value="'bracelet'" style="display: none">
             <span class="overlay-text font-raleway bg-lightgreen font-raleway text-uppercase text-white fs-20"
                   th:text="#{main.bracelets}"></span>
-        </div>
+        </form>
     </div>
 </div>
 

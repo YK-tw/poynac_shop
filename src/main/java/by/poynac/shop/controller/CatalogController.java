@@ -85,13 +85,11 @@ public class CatalogController {
         if (sortOption != null) {
             response.addCookie(new Cookie("sortOption", sortOption));
         }
-        //TODO fix filters
         if (wrapper.getAttributes() != null && !wrapper.getAttributes().isEmpty()) {
             request.getSession().setAttribute("filterAttributes", wrapper.getAttributes());
         } else {
             request.getSession().removeAttribute("filterAttributes");
         }
-        //TODO fix filters
 
         return "redirect:/catalog";
     }

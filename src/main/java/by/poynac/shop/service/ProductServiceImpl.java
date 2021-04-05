@@ -1,7 +1,6 @@
 package by.poynac.shop.service;
 
 import by.poynac.shop.model.Product;
-import by.poynac.shop.repository.AttributeRepository;
 import by.poynac.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
