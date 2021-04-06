@@ -43,7 +43,7 @@
     <div class="font-montserrat text-white fs-20 text-uppercase"
          style="white-space: nowrap; margin: auto 20px;" th:text="${product.price}">
     </div>
-    <a class="text-white delete__link" href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a class="text-white delete__link" th:href="@{/basket/remove/__${product.id}__}">&nbsp;&nbsp;&nbsp;&nbsp;</a>
 </div>
 
 

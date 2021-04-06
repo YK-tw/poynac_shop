@@ -3,6 +3,7 @@ package by.poynac.shop.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product")
@@ -86,4 +87,16 @@ public class Product implements Serializable {
         this.attributes = attributes;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id.equals(product.id) && name.equals(product.name) && price.equals(product.price) && description.equals(product.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, description);
+    }
 }
