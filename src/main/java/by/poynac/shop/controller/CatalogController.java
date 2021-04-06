@@ -2,6 +2,7 @@ package by.poynac.shop.controller;
 
 import by.poynac.shop.model.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
+import by.poynac.shop.model.SessionOrderWrapper;
 import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -104,6 +106,27 @@ public class CatalogController {
     @GetMapping("/{id:[\\d]+}")
     public String product(Model model, @PathVariable long id) {
         Product product = productService.findById(id);
+        model.addAttribute("product", product);
+        return "catalog/product";
+    }
+
+    @PostMapping("/{id:[\\d]+}")
+    public String changeBasket(HttpServletRequest request,
+                               @ModelAttribute(value = "toggle") String toggle,
+                               Model model,
+                               @PathVariable long id,
+                               @SessionAttribute(value = "order", required = false) SessionOrderWrapper order) {
+
+        Product product = productService.findById(id);
+        HttpSession session = request.getSession();
+
+        if (order == null) {
+            order = new SessionOrderWrapper();
+        }
+
+        order.setProductAmount(product, Integer.parseInt(toggle));
+
+        session.setAttribute("order", order);
         model.addAttribute("product", product);
         return "catalog/product";
     }

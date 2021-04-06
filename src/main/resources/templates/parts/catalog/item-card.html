@@ -22,26 +22,26 @@
 </a>
 
 
-<div th:fragment="basket_card (i)" class="product__card d-flex">
+<div th:fragment="basket_card (product, amount)" class="product__card d-flex">
     <img class="product_card_img" src="http://placehold.it/300x300?text=1">
     <div class="text-white font-raleway pl-10">
-        <div class="card__text fs-25">Text text</div>
-        <div class="card__text fs-20">Text2 text</div>
+        <div class="card__text fs-25" th:text="${product.name}"></div>
+        <div class="card__text fs-20" th:text="${product.name}"></div>
     </div>
     <div class="d-flex align-items-center pl-20">
         <input class="amount__input font-montserrat fs-20 text-white" type="number" min="1" max="100"
-               value="1">
+               th:value="${amount}" th:name="${product.id}">
         <div class="amount_button_container">
-            <button class="amount__button text-white font-montserrat" th:onclick="|addProduct('${i}');|">
+            <button class="amount__button text-white font-montserrat" th:onclick="|addProduct('${product.id}');|">
                 <div>+</div>
             </button>
-            <button class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${i}');|">
+            <button class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${product.id}');|">
                 <div>&#8722;</div>
             </button>
         </div>
     </div>
     <div class="font-montserrat text-white fs-20 text-uppercase"
-         style="white-space: nowrap; margin: auto 20px;">85 byn
+         style="white-space: nowrap; margin: auto 20px;" th:text="${product.price}">
     </div>
     <a class="text-white delete__link" href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a>
 </div>

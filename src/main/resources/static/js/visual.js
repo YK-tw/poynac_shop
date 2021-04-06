@@ -130,15 +130,15 @@ function imageExpand(imgs) {
 
 //amount counter +-
 
-function addProduct(i) {
-    var counter = document.getElementsByClassName("amount__input")[i];
+function addProduct(name) {
+    var counter = document.getElementsByClassName("amount__input").namedItem(name);
     if (counter.value < 100) {
         counter.value++;
     }
 }
 
-function divideProduct(i) {
-    var counter = document.getElementsByClassName("amount__input")[i];
+function divideProduct(name) {
+    var counter = document.getElementsByClassName("amount__input").namedItem(name);
     if (counter.value > 1) {
         counter.value--;
     }

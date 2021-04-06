@@ -41,17 +41,17 @@
 
             <div class="text-white font-montserrat fs-30 text-uppercase mt-20" th:text="${product.price}+' byn'"></div>
 
-            <div class="d-flex mt-33">
-                <input class="amount__input font-montserrat fs-30 text-white" type="number" min="1" max="100" value="1">
+            <form th:action="@{'/catalog/' + __${product.id}__}" th:object="${String}" th:method="POST" class="d-flex mt-33">
+                <input th:name="'toggle'" class="amount__input font-montserrat fs-30 text-white" type="number" min="1" max="100" value="1">
                 <div class="amount_button_container">
-                    <button class="amount__button text-white font-montserrat" onclick="addProduct(0)">+</button>
-                    <button class="amount__button text-white font-montserrat" onclick="divideProduct(0)">&#8722;
+                    <button type="button" class="amount__button text-white font-montserrat" onclick="addProduct(0)">+</button>
+                    <button type="button" class="amount__button text-white font-montserrat" onclick="divideProduct(0)">&#8722;
                     </button>
                 </div>
                 <button type="submit" class="amount__submit font-raleway fs-25 text-white bg-lightgreen b-0"
                         th:text="#{product.addbutton}">
                 </button>
-            </div>
+            </form>
 
         </div>
 
