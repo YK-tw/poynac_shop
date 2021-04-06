@@ -16,7 +16,7 @@ public class Order {
     private Timestamp date;
     private Double price;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "order_product",
             joinColumns = @JoinColumn(name = "order_id"),

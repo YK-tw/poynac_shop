@@ -6,6 +6,7 @@ import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,27 +31,34 @@ public class CatalogController {
                           @CookieValue(value = "sortOption", defaultValue = "asc") String sortOption,
                           @SessionAttribute(value = "filterAttributes", required = false) List<String> attributes,
                           Model model) {
+
         Page<Product> products;
         AttributeFilterWrapper wrapper = new AttributeFilterWrapper();
+        Pageable pageSettings = generateCatalogPageSettings(page, pageSize, sortItem, sortOption);
+
         if (attributes != null && !attributes.isEmpty()) {
-            products = productService.findProductsByAttributesValues(attributes,
-                    PageRequest.of(Integer.parseInt(page),
-                            Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
+            products = productService.findProductsByAttributesValues(attributes, pageSettings);
             wrapper.setAttributes(attributes);
         } else {
-            products = productService.findAll(PageRequest.of(Integer.parseInt(page),
-                    Integer.parseInt(pageSize), filterSort(sortItem, sortOption)));
+            products = productService.findAll(pageSettings);
         }
+
         model.addAttribute("curPage", Integer.parseInt(page));
         model.addAttribute("products", products);
         model.addAttribute("size", Integer.parseInt(pageSize));
         model.addAttribute("sortItem", sortItem);
         model.addAttribute("sort", sortOption);
         model.addAttribute("wrapper", wrapper);
+
         return "catalog/catalog";
     }
 
-    public Sort filterSort(String sortItem, String sortOption) {
+    private Pageable generateCatalogPageSettings(String page, String pageSize, String sortItem, String sortOption) {
+        return PageRequest.of(Integer.parseInt(page),
+                Integer.parseInt(pageSize), filterSort(sortItem, sortOption));
+    }
+
+    private Sort filterSort(String sortItem, String sortOption) {
         String sortingType;
         switch (sortItem) {
             case "alphabet":
@@ -70,12 +78,12 @@ public class CatalogController {
     }
 
     @PostMapping
-    public String setCatalogSize(HttpServletResponse response,
-                                 HttpServletRequest request,
-                                 @RequestParam(required = false) String size,
-                                 @RequestParam(required = false) String sortItem,
-                                 @RequestParam(required = false) String sortOption,
-                                 @ModelAttribute(value = "wrapper") AttributeFilterWrapper wrapper) {
+    public String setLonglivingValues(HttpServletResponse response,
+                                      HttpServletRequest request,
+                                      @RequestParam(required = false) String size,
+                                      @RequestParam(required = false) String sortItem,
+                                      @RequestParam(required = false) String sortOption,
+                                      @ModelAttribute(value = "wrapper") AttributeFilterWrapper wrapper) {
         if (size != null) {
             response.addCookie(new Cookie("size", size));
         }
@@ -85,10 +93,8 @@ public class CatalogController {
         if (sortOption != null) {
             response.addCookie(new Cookie("sortOption", sortOption));
         }
-        if (wrapper.getAttributes() != null && !wrapper.getAttributes().isEmpty()) {
+        if (wrapper.getAttributes() != null) {
             request.getSession().setAttribute("filterAttributes", wrapper.getAttributes());
-        } else {
-            request.getSession().removeAttribute("filterAttributes");
         }
 
         return "redirect:/catalog";

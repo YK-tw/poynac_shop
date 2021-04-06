@@ -13,6 +13,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
+        model.addAttribute("wrapper", generateMainPageWrapper());
+        return "home/home";
+    }
+
+    private AttributeFilterWrapper generateMainPageWrapper() {
         AttributeFilterWrapper wr = new AttributeFilterWrapper();
         List<String> attr = new ArrayList<>();
         attr.add("earrings");
@@ -22,8 +27,7 @@ public class HomeController {
         attr.add("cuff");
         attr.add("bracelet");
         wr.setAttributes(attr);
-        model.addAttribute("wrapper", wr);
-        return "home/home";
+        return wr;
     }
 
     @GetMapping("/basket")

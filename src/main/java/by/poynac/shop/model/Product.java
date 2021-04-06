@@ -24,6 +24,9 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "attribute_id"))
     private List<Attribute> attributes;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    private List<Order> orders;
+
     public Product() {
     }
 
