@@ -28,20 +28,20 @@
         <div class="card__text fs-25" th:text="${product.name}"></div>
         <div class="card__text fs-20" th:text="${product.name}"></div>
     </div>
-    <div class="d-flex align-items-center pl-20">
-        <input class="amount__input font-montserrat fs-20 text-white" type="number" min="1" max="100"
-               th:value="${amount}" th:name="${product.id}">
+    <form th:method="POST" th:action="@{/basket/__${product.id}__}" th:object="${String}" class="d-flex align-items-center pl-20">
+        <input th:name="'toggle'" class="amount__input font-montserrat fs-20 text-white" type="number" min="1" max="100"
+               th:value="${amount}" th:id="${product.id}">
         <div class="amount_button_container">
-            <button class="amount__button text-white font-montserrat" th:onclick="|addProduct('${product.id}');|">
+            <button type="submit" class="amount__button text-white font-montserrat" th:onclick="|addProduct('${product.id}');|">
                 <div>+</div>
             </button>
-            <button class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${product.id}');|">
+            <button type="submit" class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${product.id}');|">
                 <div>&#8722;</div>
             </button>
         </div>
-    </div>
+    </form>
     <div class="font-montserrat text-white fs-20 text-uppercase"
-         style="white-space: nowrap; margin: auto 20px;" th:text="${product.price}">
+         style="white-space: nowrap; margin: auto 20px;" th:text="${amount} + ' x ' + ${product.price}">
     </div>
     <a class="text-white delete__link" th:href="@{/basket/remove/__${product.id}__}">&nbsp;&nbsp;&nbsp;&nbsp;</a>
 </div>

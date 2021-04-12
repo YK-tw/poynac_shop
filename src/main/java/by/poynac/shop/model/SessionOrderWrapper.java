@@ -42,7 +42,6 @@ public class SessionOrderWrapper implements Serializable {
         if (amount != null && amount > 0) {
             products.put(product, amount);
         } else if (amount == 0) {
-            System.out.println(products.get(product));
             products.remove(product);
         }
     }
