@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -107,6 +108,7 @@ public class CatalogController {
     public String product(Model model, @PathVariable long id) {
         Product product = productService.findById(id);
         model.addAttribute("product", product);
+        model.addAttribute("looked_products", new ArrayList<Product>());
         return "catalog/product";
     }
 

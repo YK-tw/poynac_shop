@@ -1,16 +1,16 @@
 package by.poynac.shop.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class AttributeFilterWrapper {
 
     private List<String> attributes;
 
-    public List<String> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(List<String> attributes) {
-        this.attributes = attributes;
-    }
 }
