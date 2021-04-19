@@ -1,4 +1,6 @@
-package by.poynac.shop.model;
+package by.poynac.shop.model.wrapper;
+
+import by.poynac.shop.model.Product;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

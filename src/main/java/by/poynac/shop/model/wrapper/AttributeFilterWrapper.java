@@ -1,4 +1,4 @@
-package by.poynac.shop.model;
+package by.poynac.shop.model.wrapper;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

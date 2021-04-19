@@ -1,8 +1,8 @@
 package by.poynac.shop.controller;
 
-import by.poynac.shop.model.AttributeFilterWrapper;
+import by.poynac.shop.model.wrapper.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
-import by.poynac.shop.model.SessionOrderWrapper;
+import by.poynac.shop.model.wrapper.SessionOrderWrapper;
 import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
