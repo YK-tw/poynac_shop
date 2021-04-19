@@ -85,4 +85,9 @@ public class HomeController {
         return "redirect:/basket";
     }
 
+    @GetMapping("/profile")
+    public String getProfile(){
+        return "/home/profile";
+    }
+
 }

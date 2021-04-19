@@ -39,9 +39,4 @@ public class PoynacShopApplication implements WebMvcConfigurer {
         registry.addInterceptor(localeChangeInterceptor);
     }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("home/login");
-        registry.addViewController("/profile").setViewName("home/profile");
-    }
 }
