@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/auth")
 public class AuthController {
 
+    private final String LOGIN_PATH = "/security/login";
+    private final String REGISTER_PATH = "/security/registration";
+
     @Autowired
     private UserService userService;
 
@@ -23,19 +26,25 @@ public class AuthController {
 
     @GetMapping("/login")
     public String getLoginPage() {
-        return "/security/login";
+        return LOGIN_PATH;
     }
 
     @GetMapping("/register")
     public String getRegistrationPage(Model model) {
         model.addAttribute("user", new UserRegisterWrapper());
-        return "/security/registration";
+        return REGISTER_PATH;
     }
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute(value = "user") UserRegisterWrapper user) {
-        userService.save(userMapper.toEntity(user));
-        return "/security/login";
+        if (user.getPassword().equals(user.getPasswordConfirm())) {
+            if (userService.save(userMapper.toEntity(user))) {
+                return LOGIN_PATH;
+            } else {
+                return REGISTER_PATH;
+            }
+        }
+        return REGISTER_PATH;
     }
 
 }
