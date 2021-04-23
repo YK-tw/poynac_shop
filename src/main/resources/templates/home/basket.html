@@ -34,7 +34,7 @@
             <!--            TODO second variant-->
             <th:block sec:authorize="!isAuthenticated()">
                 <div th:if="${order == null}">
-                    <div class="font-raleway fs-30 text-white mt-70 ml-30">Basket is empty</div>
+                    <div class="font-raleway fs-30 text-white mt-70 ml-30" th:text="#{basket.isEmpty}"></div>
                 </div>
                 <div th:if="${order != null}">
                     <div class="bg-darkgreen mt-200 w-300">
