@@ -32,18 +32,24 @@
         <div class="col-lg-4 order-lg-12">
 
             <!--            TODO second variant-->
-            <th:block th:if="${order != null}">
-                <div class="bg-darkgreen mt-200 w-300">
-                    <div class="text-white d-flex ml-30 pt-30">
-                        <div class="fs-25 font-raleway mr-10">Итого:</div>
-                        <div class="fs-25 font-montserrat text-uppercase"
-                             th:text="${order.countFullPrice() + ' byn'}"></div>
-                    </div>
-                    <div class="text-white font-raleway fs-20 pt-30 px-30 letter-spacing-0" th:text="#{basket.unlogin}">
-                    </div>
-                    <div class="mt-30 pb-40">
-                        <a class="bg-lightgreen text-white font-raleway fs-20 letter-spacing-0 p-2 ml-30"
-                           th:text="#{button.login}"></a>
+            <th:block sec:authorize="!isAuthenticated()">
+                <div th:if="${order == null}">
+                    <div class="font-raleway fs-30 text-white mt-70 ml-30">Basket is empty</div>
+                </div>
+                <div th:if="${order != null}">
+                    <div class="bg-darkgreen mt-200 w-300">
+                        <div class="text-white d-flex ml-30 pt-30">
+                            <div class="fs-25 font-raleway mr-10">Итого:</div>
+                            <div class="fs-25 font-montserrat text-uppercase"
+                                 th:text="${order.countFullPrice() + ' byn'}"></div>
+                        </div>
+                        <div class="text-white font-raleway fs-20 pt-30 px-30 letter-spacing-0"
+                             th:text="#{basket.unlogin}">
+                        </div>
+                        <div class="mt-30 pb-40">
+                            <a class="bg-lightgreen text-white font-raleway fs-20 letter-spacing-0 p-2 ml-30"
+                               th:text="#{button.login}" th:href="@{/auth/login}"></a>
+                        </div>
                     </div>
                 </div>
             </th:block>
