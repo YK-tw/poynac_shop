@@ -1,6 +1,5 @@
 package by.poynac.shop.config;
 
-import by.poynac.shop.model.enumeration.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +8,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -33,7 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/catalog/**").permitAll()
+                .antMatchers("/auth/register").not().fullyAuthenticated()
+                .antMatchers("/",
+                        "/catalog/**",
+                        "/css/**",
+                        "/js/**",
+                        "/static/js/**",
+                        "/ref/**",
+                        "/auth/login*").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -51,17 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(daoAuthenticationProvider());
-    }
-
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        return new InMemoryUserDetailsManager(User
-                .builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles(Role.ADMIN.name())
-                .build());
     }
 
     @Bean
