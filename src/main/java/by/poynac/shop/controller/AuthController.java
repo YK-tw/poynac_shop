@@ -36,14 +36,17 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute(value = "user") UserRegisterWrapper user) {
+    public String registerUser(@ModelAttribute(value = "user") UserRegisterWrapper user,
+                               Model model) {
         if (user.getPassword().equals(user.getPasswordConfirm())) {
-            if (userService.save(userMapper.toEntity(user))) {
+            if (userService.saveUser(userMapper.toEntity(user))) {
                 return LOGIN_PATH;
             } else {
+                model.addAttribute("error", "register.userExists");
                 return REGISTER_PATH;
             }
         }
+        model.addAttribute("error", "register.passwordMismatch");
         return REGISTER_PATH;
     }
 

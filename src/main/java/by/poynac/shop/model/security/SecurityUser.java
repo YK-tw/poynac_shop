@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class SecurityUser implements UserDetails {
+public class SecurityUser implements UserDetails {
 
     private final String username;
 

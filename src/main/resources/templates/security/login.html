@@ -23,9 +23,10 @@
 <body class="bg-black">
 <div class="container-fluid" th:insert="~{parts/header::logo-part}"></div>
 <div class="container-fluid">
-    <form class="ml-30 mb-70 mt-70" th:method="post" th:action="@{/auth/login}">
+    <form class="ml-30 mb-70 mt-70" th:method="POST" th:action="@{/auth/login}">
         <div class="mt-70 mb-70 d-flex font-raleway fs-40">
-            <a class="text-uppercase" style="cursor: pointer; color: #646E44;" th:text="#{security.registration}" th:href="@{/auth/register}"></a>
+            <a class="text-uppercase" style="cursor: pointer; color: #646E44;" th:text="#{security.registration}"
+               th:href="@{/auth/register}"></a>
             <div class="cl-green">/</div>
             <a class="text-white text-uppercase" style="cursor: pointer;" th:text="#{security.login}"></a>
         </div>
@@ -33,13 +34,15 @@
             <div class="mb-20">
                 <label for="username" th:text="#{login}"></label>
                 <br>
-                <input class="fs-20 font-montserrat w-300 pl-10 bg-black py-1 text-white" style="border: 2px solid #646E44;"
+                <input class="fs-20 font-montserrat w-300 pl-10 bg-black py-1 text-white"
+                       style="border: 2px solid #646E44;"
                        type="text" id="username" name="username" th:placeholder="#{login}" required>
             </div>
             <div class="mb-20">
                 <label for="password" th:text="#{password}"></label>
                 <br>
-                <input class="fs-20 font-montserrat w-300 pl-10 bg-black py-1 text-white" style="border: 2px solid #646E44;"
+                <input class="fs-20 font-montserrat w-300 pl-10 bg-black py-1 text-white"
+                       style="border: 2px solid #646E44;"
                        type="password" id="password" name="password" th:placeholder="#{password}" required>
             </div>
         </div>

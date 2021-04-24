@@ -21,18 +21,24 @@ public class User {
 
     private String lastname;
 
+    private String phone;
+
+    private String address;
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-    public User(Long id, String email, String password, String firstname, String lastname, Role role, Status status) {
+    public User(Long id, String email, String password, String firstname, String lastname, String phone, String address, Role role, Status status) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.phone = phone;
+        this.address = address;
         this.role = role;
         this.status = status;
     }
@@ -94,5 +100,21 @@ public class User {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

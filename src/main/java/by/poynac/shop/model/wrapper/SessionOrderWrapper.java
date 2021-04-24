@@ -2,15 +2,11 @@ package by.poynac.shop.model.wrapper;
 
 
 import by.poynac.shop.model.Product;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-@Getter
-@Setter
 public class SessionOrderWrapper implements Serializable {
 
     private Map<Product, Integer> products;
@@ -51,5 +47,13 @@ public class SessionOrderWrapper implements Serializable {
             result += key.getPrice() * products.get(key);
         }
         return result;
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return this.products;
+    }
+
+    public void setProducts(Map<Product, Integer> products) {
+        this.products = products;
     }
 }
