@@ -1,10 +1,5 @@
 package by.poynac.shop.model.enumeration;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum Permission {
 
     PERMISSION_READ("permission:read"),
@@ -12,4 +7,11 @@ public enum Permission {
 
     private final String permission;
 
+    private Permission(String permission) {
+        this.permission = permission;
+    }
+
+    public String getPermission() {
+        return this.permission;
+    }
 }

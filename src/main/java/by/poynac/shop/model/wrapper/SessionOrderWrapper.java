@@ -1,5 +1,6 @@
 package by.poynac.shop.model.wrapper;
 
+
 import by.poynac.shop.model.Product;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,9 +1,5 @@
 package by.poynac.shop.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -11,9 +7,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "product")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Product implements Serializable {
 
     @Id
@@ -51,6 +44,9 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+    public Product() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,5 +61,53 @@ public class Product implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, price, description);
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Double getPrice() {
+        return this.price;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public List<Attribute> getAttributes() {
+        return this.attributes;
+    }
+
+    public List<Order> getOrders() {
+        return this.orders;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
