@@ -11,14 +11,19 @@ import java.util.Queue;
 @Setter
 public class LookedProductsWrapper {
 
+    final int LOOKED_WIDGET_SIZE = 4;
+
     private Queue<Product> products;
 
     public LookedProductsWrapper() {
-        products = new ArrayDeque<>(4);
+        products = new ArrayDeque<>(LOOKED_WIDGET_SIZE);
     }
 
     public void addProduct(Product product) {
         if (!products.contains(product)) {
+            if (products.size() == LOOKED_WIDGET_SIZE) {
+                products.remove();
+            }
             products.add(product);
         }
     }
