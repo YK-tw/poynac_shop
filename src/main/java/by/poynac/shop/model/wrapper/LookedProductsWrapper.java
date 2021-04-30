@@ -1,20 +1,25 @@
 package by.poynac.shop.model.wrapper;
 
 import by.poynac.shop.model.Product;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+@Getter
+@Setter
 public class LookedProductsWrapper {
 
-    Queue<Product> queue;
+    private Queue<Product> products;
 
-    LookedProductsWrapper() {
-        queue = new ArrayDeque<>(4);
+    public LookedProductsWrapper() {
+        products = new ArrayDeque<>(4);
     }
 
-    public Queue<Product> addProduct(Product product) {
-        queue.add(product);
-        return queue;
+    public void addProduct(Product product) {
+        if (!products.contains(product)) {
+            products.add(product);
+        }
     }
 }

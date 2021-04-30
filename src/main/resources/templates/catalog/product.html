@@ -78,7 +78,7 @@
 
     <div th:replace="~{parts/home/carousel::small_full (#{widget.variant}, 7)}"></div>
 
-    <div th:replace="~{parts/catalog/widget::looked}"></div>
+    <div th:replace="~{parts/catalog/widget::looked (${looked_products})}"></div>
 
 </div>
 
