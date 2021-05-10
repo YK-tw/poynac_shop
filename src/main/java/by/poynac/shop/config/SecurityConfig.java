@@ -38,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/js/**",
                         "/ref/**",
                         "/auth/login*",
-                        "/basket*").permitAll()
+                        "/basket*",
+                        "/basket/{id:[\\d]+}",
+                        "/basket/remove/{id:[\\d]+}").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -1,8 +1,10 @@
 package by.poynac.shop.controller;
 
-import by.poynac.shop.model.wrapper.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
+import by.poynac.shop.model.wrapper.AttributeFilterWrapper;
+import by.poynac.shop.model.wrapper.OrderSaveWrapper;
 import by.poynac.shop.model.wrapper.SessionOrderWrapper;
+import by.poynac.shop.service.OrderService;
 import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class HomeController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
 
 
     @GetMapping("/")
@@ -47,6 +52,7 @@ public class HomeController {
         if (order != null) {
             model.addAttribute("order", order);
         }
+        model.addAttribute("saveParam", new OrderSaveWrapper());
         return "home/basket";
     }
 
@@ -85,8 +91,19 @@ public class HomeController {
         return "redirect:/basket";
     }
 
+    @PostMapping("/basket/save")
+    public String saveOrder(HttpServletRequest request,
+                            Model model,
+                            @ModelAttribute(value = "saveParam") OrderSaveWrapper saveParam) {
+
+        orderService.saveOrder((SessionOrderWrapper) request.getSession().getAttribute("order"), saveParam);
+        request.getSession().removeAttribute("order");
+
+        return "redirect:/";
+    }
+
     @GetMapping("/profile")
-    public String getProfile(){
+    public String getProfile() {
         return "/home/profile";
     }
 

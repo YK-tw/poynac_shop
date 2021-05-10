@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "attribute")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +17,7 @@ import java.util.List;
 public class Attribute {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
