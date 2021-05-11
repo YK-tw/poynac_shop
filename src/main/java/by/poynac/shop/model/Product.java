@@ -1,12 +1,21 @@
 package by.poynac.shop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
 
     @Id
@@ -26,8 +35,8 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "attribute_id"))
     private List<Attribute> attributes;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "product")
+    private Set<OrderProduct> orders;
 
     public Product(Long id, String name, Double price, String description, List<Attribute> attributes) {
         this.id = id;
@@ -44,70 +53,4 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Product() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id.equals(product.id)
-                && name.equals(product.name)
-                && price.equals(product.price)
-                && description.equals(product.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, description);
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Double getPrice() {
-        return this.price;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public List<Attribute> getAttributes() {
-        return this.attributes;
-    }
-
-    public List<Order> getOrders() {
-        return this.orders;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }

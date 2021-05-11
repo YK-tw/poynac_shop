@@ -1,5 +1,6 @@
 package by.poynac.shop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,12 +8,14 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "order_info")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Order {
 
     @Id
@@ -22,19 +25,10 @@ public class Order {
     private Long userId;
     private Timestamp date;
     private Double price;
+    private String comment;
+    private String delivery;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
-
-    public Order(Long id, Long userId, Timestamp date, Double price) {
-        this.id = id;
-        this.userId = userId;
-        this.date = date;
-        this.price = price;
-    }
+    @OneToMany(mappedBy = "order")
+    private Set<OrderProduct> productSet;
 
 }
