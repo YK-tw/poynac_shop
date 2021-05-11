@@ -179,47 +179,6 @@ a.card__link:hover {
 
 /*!!SIDEBAR!!*/
 
-/*CHECKBOX*/
-
-.checkbox {
-    display: block;
-    cursor: pointer;
-}
-
-.checkbox + .checkbox {
-    margin-top: 15px;
-}
-
-.checkbox__real {
-    width: 1px;
-    height: 1px;
-    position: absolute;
-    opacity: 0;
-    appearance: none;
-}
-
-.checkbox__fake {
-    position: relative;
-    display: inline-block;
-    margin-right: 20px;
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border: 2px solid white;
-    border-radius: 50%;
-    top: 1px;
-}
-
-.checkbox__real:checked + input + .checkbox__fake {
-    background-color: #646E44;
-}
-
-.checkbox__title {
-
-}
-
-/*!!CHECKBOX!!*/
-
 /*BUTTONS*/
 
 .filter__toggle {

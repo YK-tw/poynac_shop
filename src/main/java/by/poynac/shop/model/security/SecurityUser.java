@@ -3,6 +3,9 @@ package by.poynac.shop.model.security;
 
 import by.poynac.shop.model.User;
 import by.poynac.shop.model.enumeration.Status;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +13,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class SecurityUser implements UserDetails {
 
     private final String username;
@@ -19,16 +25,6 @@ public class SecurityUser implements UserDetails {
     private final List<SimpleGrantedAuthority> authorities;
 
     private final boolean isActive;
-
-    public SecurityUser(String username,
-                        String password,
-                        List<SimpleGrantedAuthority> authorities,
-                        boolean isActive) {
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-        this.isActive = isActive;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -65,17 +61,5 @@ public class SecurityUser implements UserDetails {
                 user.getStatus().equals(Status.ACTIVE),
                 user.getRole().getAuthorities()
         );
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public boolean isActive() {
-        return this.isActive;
     }
 }

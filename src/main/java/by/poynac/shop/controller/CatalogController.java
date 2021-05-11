@@ -3,6 +3,7 @@ package by.poynac.shop.controller;
 
 import by.poynac.shop.model.Product;
 import by.poynac.shop.model.wrapper.AttributeFilterWrapper;
+import by.poynac.shop.model.wrapper.LookedProductsWrapper;
 import by.poynac.shop.model.wrapper.SessionOrderWrapper;
 import by.poynac.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,10 +107,17 @@ public class CatalogController {
 
 
     @GetMapping("/{id:[\\d]+}")
-    public String product(Model model, @PathVariable long id) {
+    public String product(HttpServletRequest request, Model model, @PathVariable long id) {
         Product product = productService.findById(id);
+        HttpSession session = request.getSession();
+        LookedProductsWrapper looked = (LookedProductsWrapper) session.getAttribute("looked_products");
+        if (looked == null) {
+            looked = new LookedProductsWrapper();
+        }
+        looked.addProduct(product);
+        session.setAttribute("looked_products", looked);
         model.addAttribute("product", product);
-        model.addAttribute("looked_products", new ArrayList<Product>());
+        model.addAttribute("looked_products", looked);
         return "catalog/product";
     }
 
@@ -131,6 +139,7 @@ public class CatalogController {
 
         session.setAttribute("order", order);
         model.addAttribute("product", product);
+        model.addAttribute("looked_products", session.getAttribute("looked"));
         return "catalog/product";
     }
 

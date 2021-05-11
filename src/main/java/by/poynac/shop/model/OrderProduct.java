@@ -29,4 +29,5 @@ public class OrderProduct {
     Product product;
 
     int amount;
+
 }

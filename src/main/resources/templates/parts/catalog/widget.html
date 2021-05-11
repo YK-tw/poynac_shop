@@ -82,23 +82,23 @@
 
 <div th:fragment="charact (attribute)" class="charact text-white font-raleway fs-20 d-flex">
     <!--    TODO localization-->
-    <span class="text-capitalize" th:text="#{${attribute.name}}+':'"></span>
+    <span class="text-capitalize" th:text="#{${attribute.name}} + ':'"></span>
     <span class="text-capitalize" th:text="#{${attribute.value}}"></span>
 </div>
 
-<div th:fragment="looked" class="mb-70">
+<div th:fragment="looked (looked)" class="mb-70">
     <div class="mt-70 mb-70 text-uppercase font-raleway fs-35 text-white text-center" th:text="#{widget.looked}"></div>
     <div class="row">
-        <th:block th:each="i: ${#numbers.sequence(0, 3)}">
+        <th:block th:each="item : ${looked.products}">
 
             <div class="looked__card mb-20 col-lg-3 col-sm-6 d-flex justify-content-center">
                 <div class="looked_card_img">
                     <img src="http://placehold.it/130x130?text=1" alt="product img">
                 </div>
                 <div class="looked_card_content text-center">
-                    <div class="looked_card_title font-raleway text-white fs-25" th:text="'name'">text</div>
-                    <div class="looked_card_price font-montserrat text-white fs-20 text-uppercase" th:text="'97 byn'">
-                        price
+                    <div class="looked_card_title font-raleway text-white fs-25" th:text="${item.name}"></div>
+                    <div class="looked_card_price font-montserrat text-white fs-20 text-uppercase"
+                         th:text="${item.price} + ' byn'">
                     </div>
                 </div>
             </div>

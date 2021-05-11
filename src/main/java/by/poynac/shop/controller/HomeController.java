@@ -1,7 +1,7 @@
 package by.poynac.shop.controller;
 
-import by.poynac.shop.model.wrapper.AttributeFilterWrapper;
 import by.poynac.shop.model.Product;
+import by.poynac.shop.model.wrapper.AttributeFilterWrapper;
 import by.poynac.shop.model.wrapper.OrderSaveWrapper;
 import by.poynac.shop.model.wrapper.SessionOrderWrapper;
 import by.poynac.shop.service.OrderService;
@@ -24,6 +24,7 @@ public class HomeController {
 
     @Autowired
     private OrderService orderService;
+
 
     @GetMapping("/")
     public String home(Model model) {
