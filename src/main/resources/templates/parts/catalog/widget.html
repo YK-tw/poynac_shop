@@ -90,10 +90,11 @@
     <div class="mt-70 mb-70 text-uppercase font-raleway fs-35 text-white text-center" th:text="#{widget.looked}"></div>
     <div class="row">
         <th:block th:each="item : ${looked.products}">
-
-            <div class="looked__card mb-20 col-lg-3 col-sm-6 d-flex justify-content-center">
+            <a th:href="@{/catalog/__${item.id}__}"
+               class="looked__card mb-20 col-lg-3 col-sm-6 d-flex justify-content-center">
                 <div class="looked_card_img">
-                    <img src="http://placehold.it/130x130?text=1" alt="product img">
+                    <img style="object-fit: cover; width: 130px; height: 130px;"
+                         th:src="${item.photoLinks.get(0).link}" th:alt="${item.name}">
                 </div>
                 <div class="looked_card_content text-center">
                     <div class="looked_card_title font-raleway text-white fs-25" th:text="${item.name}"></div>
@@ -101,8 +102,7 @@
                          th:text="${item.price} + ' byn'">
                     </div>
                 </div>
-            </div>
-
+            </a>
         </th:block>
     </div>
 </div>

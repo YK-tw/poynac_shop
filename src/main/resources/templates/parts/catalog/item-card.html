@@ -10,32 +10,38 @@
 <a th:fragment="card (product)" class="card__link" th:href="'/catalog/' + ${product.id}">
     <div class="item__card">
         <div class="card__img">
-            <img src="http://placehold.it/270x270?text=1" alt="product img">
-            <img class="card_img_hidden" src="http://placehold.it/270x270?text=2" alt="product img">
+            <img style="width: 280px; height: 280px; object-fit: cover" th:src="${product.photoLinks.get(0).link}"
+                 th:alt="${product.name}">
+            <img style="width: 280px; height: 280px; object-fit: cover" th:if="${product.photoLinks.size() > 1}"
+                 class="card_img_hidden" th:src="${product.photoLinks.get(1).link}"
+                 th:alt="${product.name}">
         </div>
         <div class="card__content text-center">
             <div class="card__title font-raleway text-white fs-20 text-uppercase" th:text="${product.name}"></div>
             <div class="card__price font-montserrat text-white fs-20 text-uppercase"
-                 th:text="${product.price}+' byn'"></div>
+                 th:text="${product.price} + ' byn'"></div>
         </div>
     </div>
 </a>
 
 
 <div th:fragment="basket_card (product, amount)" class="product__card d-flex">
-    <img class="product_card_img" src="http://placehold.it/300x300?text=1">
+    <img class="product_card_img" th:src="${product.photoLinks.get(0).link}">
     <div class="text-white font-raleway pl-10">
         <div class="card__text fs-25" th:text="${product.name}"></div>
-        <div class="card__text fs-20" th:text="${product.name}"></div>
+        <!--        <div class="card__text fs-20" th:text="${product.name}"></div>-->
     </div>
-    <form th:method="POST" th:action="@{/basket/__${product.id}__}" th:object="${String}" class="d-flex align-items-center pl-20">
+    <form th:method="POST" th:action="@{/basket/__${product.id}__}" th:object="${String}"
+          class="d-flex align-items-center pl-20">
         <input th:name="'toggle'" class="amount__input font-montserrat fs-20 text-white" type="number" min="1" max="100"
                th:value="${amount}" th:id="${product.id}">
         <div class="amount_button_container">
-            <button type="submit" class="amount__button text-white font-montserrat" th:onclick="|addProduct('${product.id}');|">
+            <button type="submit" class="amount__button text-white font-montserrat"
+                    th:onclick="|addProduct('${product.id}');|">
                 <div>+</div>
             </button>
-            <button type="submit" class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${product.id}');|">
+            <button type="submit" class="amount__button text-white font-montserrat"
+                    th:onclick="|divideProduct('${product.id}');|">
                 <div>&#8722;</div>
             </button>
         </div>

@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -38,6 +39,9 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private Set<OrderProduct> orders;
 
+    @OneToMany(mappedBy = "product")
+    private List<PhotoLink> photoLinks;
+
     public Product(Long id, String name, Double price, String description, List<Attribute> attributes) {
         this.id = id;
         this.name = name;
@@ -53,4 +57,19 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id.equals(product.id)
+                && name.equals(product.name)
+                && price.equals(product.price)
+                && description.equals(product.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, description, attributes, photoLinks);
+    }
 }
