@@ -35,9 +35,9 @@
                 <p class="text-white mb-0" th:text="#{product.existence}"></p>
                 <p class="cl-green mb-0" th:text="#{product.existence.value}"></p>
             </div>
-            <div class="font-raleway fs-25 text-white mt-30" th:text="#{product.size}"></div>
+<!--            <div class="font-raleway fs-25 text-white mt-30" th:text="#{product.size}"></div>-->
 
-            <div th:replace="~{parts/catalog/widget::size_card_holder (10)}"></div>
+<!--            <div th:replace="~{parts/catalog/widget::size_card_holder (10)}"></div>-->
 
             <div class="text-white font-montserrat fs-30 text-uppercase mt-20" th:text="${product.price}+' byn'"></div>
 
@@ -56,7 +56,7 @@
         </div>
 
         <div class="col-lg-6 order-lg-1 p-0">
-            <div class="pt-70 pl-100" th:insert="parts/catalog/widget::img_gallery"></div>
+            <div class="pt-70 pl-100" th:insert="parts/catalog/widget::img_gallery (${product})"></div>
         </div>
     </div>
 

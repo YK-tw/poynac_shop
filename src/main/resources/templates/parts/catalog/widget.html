@@ -54,22 +54,13 @@
     </form>
 </div>
 
-<div th:fragment="img_gallery">
+<div th:fragment="img_gallery (product)">
     <div th:fragment="gallery_big_img" class="img__container pb-3">
-        <img id="expandedImg" th:src="@{/ref/earrings.png}">
+        <img style="object-fit: cover; width: 390px; height: 390px;" id="expandedImg" th:src="${product.photoLinks.get(0).link}">
     </div>
     <div th:fragment="gallery_choose" class="img__row">
-        <div class="img__column">
-            <img th:src="@{/ref/bracelets.png}" alt="Bracelets" onclick="imageExpand(this);">
-        </div>
-        <div class="img__column">
-            <img th:src="@{/ref/cuffs.png}" alt="Cuffs" onclick="imageExpand(this);">
-        </div>
-        <div class="img__column">
-            <img th:src="@{/ref/chains.png}" alt="Chains" onclick="imageExpand(this);">
-        </div>
-        <div class="img__column">
-            <img th:src="@{/ref/earrings.png}" alt="Earrings" onclick="imageExpand(this);">
+        <div class="img__column" th:each="item : ${product.photoLinks}">
+            <img style="object-fit: cover; width: 80px; height: 80px;" th:src="${item.link}" alt="product.name" onclick="imageExpand(this);">
         </div>
     </div>
 </div>
