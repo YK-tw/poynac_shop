@@ -19,7 +19,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -109,6 +108,8 @@ public class CatalogController {
     @GetMapping("/{id:[\\d]+}")
     public String product(HttpServletRequest request, Model model, @PathVariable long id) {
         Product product = productService.findById(id);
+        product.setViews(product.getViews() + 1);
+        productService.save(product);
         HttpSession session = request.getSession();
         LookedProductsWrapper looked = (LookedProductsWrapper) session.getAttribute("looked_products");
         if (looked == null) {

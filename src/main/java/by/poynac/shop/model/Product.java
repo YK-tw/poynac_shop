@@ -29,6 +29,8 @@ public class Product implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    private Long views;
+
     @ManyToMany
     @JoinTable(
             name = "product_attribute",

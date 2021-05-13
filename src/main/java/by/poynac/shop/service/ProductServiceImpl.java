@@ -16,6 +16,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
     public Page<Product> findProductsByAttributesValues(List<String> values, Pageable pageable) {
         return productRepository.findDistinctByAllAttributes(values, (long) values.size(), pageable);
     }

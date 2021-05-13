@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ProductService {
 
+    Product save(Product product);
+
     Page<Product> findProductsByAttributesValues(List<String> values, Pageable pageable);
 
     Page<Product> findAll(Pageable pageable);
