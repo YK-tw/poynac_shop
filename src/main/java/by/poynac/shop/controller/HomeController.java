@@ -27,8 +27,10 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model,
+                       HttpServletRequest request) {
         model.addAttribute("wrapper", generateMainPageWrapper());
+        request.getSession().removeAttribute("filterAttributes");
         return "home/home";
     }
 
