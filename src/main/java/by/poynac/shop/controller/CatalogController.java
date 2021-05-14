@@ -119,6 +119,8 @@ public class CatalogController {
         session.setAttribute("looked_products", looked);
         model.addAttribute("product", product);
         model.addAttribute("looked_products", looked);
+        model.addAttribute("products", productService.findAll(PageRequest.of(0,
+                7, Sort.by(Sort.Order.desc("views")))));
         return "catalog/product";
     }
 

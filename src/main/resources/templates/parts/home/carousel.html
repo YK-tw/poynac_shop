@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<div th:fragment="small_full (text, size)" class="container-fluid text-center py-3 w-100 bg-black">
+<div th:fragment="small_full (text, product, products)" class="container-fluid text-center py-3 w-100 bg-black">
     <div class="row py-5 font-raleway text-white fs-40 text-center">
         <p class="text-uppercase" th:text="${text}"></p>
     </div>
@@ -43,23 +43,23 @@
         <div id="smallCarousel" class="carousel carousel__small w-100" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox">
 
-                <div class="carousel-item active">
+                <div class="carousel-item active  align-content-center">
                     <div class="col-lg-3 text-white">
-                        <img class="img-fluid" th:src="@{${'http://placehold.it/200x200?text=0'}}"
+                        <img style="object-fit: cover; height: 280px; width: 280px;" th:src="${product.photoLinks.get(0).link}"
                              alt="carousel item 5">
-                        <p class="font-raleway fs-25 pt-3" th:text="'name'"></p>
-                        <p class="font-montserrat fs-20" th:text="'0 BYN'"></p>
+                        <p class="font-raleway fs-25 pt-3" th:text="${product.name}"></p>
+                        <p class="font-montserrat fs-20" th:text="${product.price} + ' BYN'"></p>
                     </div>
                 </div>
 
-                <th:block th:each="i: ${#numbers.sequence(1, size)}">
+                <th:block th:each="item : ${products}">
 
-                    <div class="carousel-item">
+                    <div class="carousel-item align-content-center">
                         <div class="col-lg-3 text-white">
-                            <img class="img-fluid" th:src="@{${'http://placehold.it/200x200?text='+i}}"
+                            <img style="object-fit: cover; height: 280px; width: 280px;" th:src="${item.photoLinks.get(0).link}"
                                  alt="carousel item 5">
-                            <p class="font-raleway fs-25 pt-3" th:text="'name'+${i}"></p>
-                            <p class="font-montserrat fs-20" th:text="${i}+' BYN'"></p>
+                            <p class="font-raleway fs-25 pt-3" th:text="${item.name}"></p>
+                            <p class="font-montserrat fs-20" th:text="${item.price}+' BYN'"></p>
                         </div>
                     </div>
 

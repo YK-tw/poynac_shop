@@ -35,17 +35,22 @@
                 <p class="text-white mb-0" th:text="#{product.existence}"></p>
                 <p class="cl-green mb-0" th:text="#{product.existence.value}"></p>
             </div>
-<!--            <div class="font-raleway fs-25 text-white mt-30" th:text="#{product.size}"></div>-->
+            <!--            <div class="font-raleway fs-25 text-white mt-30" th:text="#{product.size}"></div>-->
 
-<!--            <div th:replace="~{parts/catalog/widget::size_card_holder (10)}"></div>-->
+            <!--            <div th:replace="~{parts/catalog/widget::size_card_holder (10)}"></div>-->
 
             <div class="text-white font-montserrat fs-30 text-uppercase mt-20" th:text="${product.price}+' byn'"></div>
 
-            <form th:action="@{'/catalog/' + __${product.id}__}" th:object="${String}" th:method="POST" class="d-flex mt-33">
-                <input th:name="'toggle'" th:id="${product.id}" class="amount__input font-montserrat fs-30 text-white" type="number" min="1" max="100" value="1">
+            <form th:action="@{'/catalog/' + __${product.id}__}" th:object="${String}" th:method="POST"
+                  class="d-flex mt-33">
+                <input th:name="'toggle'" th:id="${product.id}" class="amount__input font-montserrat fs-30 text-white"
+                       type="number" min="1" max="100" value="1">
                 <div class="amount_button_container">
-                    <button type="button" class="amount__button text-white font-montserrat" th:onclick="|addProduct('${product.id}');|">+</button>
-                    <button type="button" class="amount__button text-white font-montserrat" th:onclick="|divideProduct('${product.id}');|">&#8722;
+                    <button type="button" class="amount__button text-white font-montserrat"
+                            th:onclick="|addProduct('${product.id}');|">+
+                    </button>
+                    <button type="button" class="amount__button text-white font-montserrat"
+                            th:onclick="|divideProduct('${product.id}');|">&#8722;
                     </button>
                 </div>
                 <button type="submit" class="amount__submit font-raleway fs-25 text-white bg-lightgreen b-0"
@@ -76,7 +81,7 @@
     </div>
 
 
-    <div th:replace="~{parts/home/carousel::small_full (#{widget.variant}, 7)}"></div>
+    <div th:replace="~{parts/home/carousel::small_full (#{widget.variant}, ${products.content.get(0)}, ${products.content.subList(1,products.content.size())})}"></div>
 
     <div th:replace="~{parts/catalog/widget::looked (${looked_products})}"></div>
 
